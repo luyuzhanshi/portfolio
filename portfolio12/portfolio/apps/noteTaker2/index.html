@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.5.0/papaparse.js"></script>
+<link href="css/index.css" type="text/css" rel="stylesheet" />
+<script src='javascript/index.js'></script>
+	<div id="acctRef">
+		<div id="ref1">DATE: </div>
+		<p id="ref2"> ACCOUNT: </p>
+		<p id="ref3"> RESOURCE: </p>
+		<p id="ref4"> PHONE: </p>
+		<p id="ref5"> TOTAL NUMBERS FOUND: </p>
+		<p id="ref6"> NEW NUMBERS FOUND: </p>
+		<p id="ref7">   NOTE: </p>
+		<p id="ref8"> REPORT NOTE: </p>
+		<p id="ref9"> CURRENT K STATE: </p>
+		<p id="ref10"> NEW K STATE: </p>
+	</div>
+	<input id="input3" onfocus="this.focus();this.select()" oninput="placeGeneralInformation()" onkeyup="justWorkedChange(event);setUpNextCore(event);" value="" placeholder="NOTE COPY VERSION3" onkeydown="delArray()">
+	<textarea id="a8" onfocus="this.focus();this.select()"  onkeyup="readyToCallCore(event);setUpNextCore(event);compareAreaCodes(event);" placeholder="HOT NOTE FIELD"></textarea>
+
+<div id="informationalDiv">
+	<div id="tot">ACCOUNT: 0 OF 0</div>
+	<p id="currentAccount">No Account</p>
+	<p id="currentDate"></p>
+	<p id="time"></p>
+	<p id="resourceDisplay">SKIP RESOURCE: N/a</p>
+	<p id="areacode">PH: ()- / TZ: XXX </p>
+	<p id="compTime2">No Completion Estimates</p>
+	<p id="compTime">ETC:|0|wk|0|dy|0|hr|0|min|0|sec|</p>
+	<p id="compTime3">Duration: 0 mins 0 secs</p>
+	<p id="kStateDescription"></p>
+	<p id="kStateDescription2"></p>
+</p>
+	<p id="newNumPercentTag">NUMBERS FOUND: 0</p>
+	<p id="newNumPercent">0/0:0%</p>
+</div>
+<div id="estimates">
+	<div id="tota"></div>
+</div>
+<input id="uidInput" value="" placeholder="UID" onkeydown="tranBackFileSelector(event);uid(event);">
+<div id="atticWork">
+	<input id="csv-file" type="file" name="files"/>
+	<div id="fileJob"></div>
+	<input id="jW" onkeydown="tranBackAN2(event)" placeholder="SEARCH ACCOUNT/LAST ACCOUNT">
+	<button id="searchButton" onclick="search()">SEARCH</button>
+	<div id="newNum"></div>
+</div>
+
+<div id="upperWork">
+	<input id="aNumber" onfocus="this.focus();this.select();detectFileOrNo();" oninput="placeGeneralInformation()" onkeydown="showAccount(this);report(this);chngAcc(event);" onkeyup="showAccount(this);searcherPaste(event,this);starterTime(event);tranBack4(event);deceased(event);"placeholder="ACCOUNT #">
+	<input id="resource" onfocus="this.focus();this.select()" oninput="placeGeneralInformation()" onkeydown="resourceDisp(event)" oninput="resourceDisp(event)" placeholder="SKIP RESOURCE">
+	<input id="phone" type=text oninput="waiterDialer()" onchange="endChecker(event)" onkeyup="bNoteTran(event)" onclick="compareAreaCodes2()" onfocus="this.focus();this.select();" value="" placeholder="PHONE #" onkeydown="storeNumber(this);selectResource(this);report(this);endChecker(event);callEmailer(event);changeFile(event);searcher(event);input2NoteCore(event);nextCore(event);applyKState(event);changeColor(event);compareAreaCodes(event); moveTask(event); uidCheck(); uidLength(this);goBack(event);">
+</div>
+<div id="lowerWork">
+	<input id="basicResult" placeholder="REPORT NOTE" onkeydown="ckStateTransback2(event);inactiveAccounts(event);placeGeneralInformation();">
+	<input id="result" onfocus="this.focus();this.select();" oninput="placeGeneralInformation()" value="" placeholder="NOTE" onkeydown="phRe(event);placeNoteInput3(event);resourceFocus(event);applyKState(event);moveTask(event);uidCheck(); uidLength();">
+	<input id="ckState" oninput="placeGeneralInformation()" placeholder="CURRENT" onkeydown="ckStateTranback(event)">
+	<input id="nkState" oninput="placeGeneralInformation()" placeholder="NEW" onkeydown="nkStateTranback(event); changeOrNo2(event);">
+</div>
+<div id="emailDiv">
+	<a id="emailer" href="" target="_top"></a>
+	<input id="email1" onkeydown="email1(event)" placeholder="TO">
+	<input id="email2" onkeydown="email2(event)" placeholder="SUBJECT">
+	<input id="email3"  onkeydown="email3(event)" placeholder="BODY">
+	<input id="email4"  onkeydown="email4(event)"  placeholder="CC">
+	<input id="email5"  onkeydown="email5(event)" placeholder="BCC">
+</div>
+<p id="jobIndicator">NO JOB SELECTED</p>
+<p id="kStateIndicator">NO K STATE SELECTED</p>
+<div id="choosingKStates">
+	<button id="ko1" onclick="placeThisState(this)">K01</button>
+	<button id="ko2" onclick="placeThisState(this)">K02</button>
+	<button id="ko3" onclick="placeThisState(this)">K03</button>
+	<button id="ko4" onclick="placeThisState(this)">K04</button>
+</div>
+<button id="dialButton" onclick="noSheetRouter(this)">Dial</button>
+<button id="searchK" onclick="noSheetRouter(this)">K State Searches</button>
+<button id="accurintSearches" onclick="noSheetRouter(this)">Find New Numbers</button>
+
+<body id="background">
+<body>
+<div>
+</div>
+<br/>
+<!--<button id="testButton">test</button>
+<button id="testButton2">test2</button>
+<button id="testButton3">test3</button>
+<button id="testButton4" onclick="crvCheck()">test4</button>-->
+
+<button id="ibutton">INBOUND</button>
+<button id="obutton">OUTBOUND</button>
+<button id="abutton">AUTHORIZED THIRD PARTY</button>
+
+<button id="yname">YOUR NAME</button>
+<button id="bname">BANKS NAME</button>
+<button id="qa">QA STATEMENT</button>
+<button id="cname">CALLERS FULL NAME</button>
+
+<button id="addr">ADDRESS</button>
+<button id="hph">HOME PHONE NUMBER</button>
+<button id="ssn">SSN</button>
+<button id="ssn4">SSN LAST 4</button>
+
+<button id="addR">ADDRESS</button>
+<button id="hpH">HOME PHONE NUMBER</button>
+<button id="poe">PLACE OF EMPLOYMENT</button>
+<button id="poen">PLACE OF EMPLOYMENT NUMBER</button>
+<button id="altN">ALTERNATIVE NUMBER</button>
+
+<div id="startingMili"></div>
+<div id="endingMili"></div>
+<div>
+	<td>
+			<div>
+				<div id="changeny"></div>
+				<div id="poc"></div>
+				<div id="container" onkeydown="placer(event);nkStateTranback(event);" onclick="placer(event)"></div>
+			</div>
+		</td>
+<div id="data"></div>
+</body>
+</html>
+
+<div id="curKs"></div>
+<div id="nKs"></div>
+<div id="first"></div>
+<input id="a1">
+<div id="eighth"></div>
+
+<div id="place"></div>
+
+<br/>
+<div id="datePlace"></div>
+<div id="dateDiv"></div>
+<div id="changeyn"></div>
+<div id="ksChange"></div>
+<div id="second"></div>
+<div id="jobName"></div>
+<input id="a2">
+<div id="uid"></div>
+<br/>

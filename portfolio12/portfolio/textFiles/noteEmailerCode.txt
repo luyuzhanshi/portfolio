@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<head>
+	<script src='../goBack.js'></script>
+</head>
+<html>
+<style>
+#background{
+	background-color: #ccccff
+
+}
+#first{
+	background-color: #444499
+	font-color: white
+}
+#listItem{
+	background-color : #f9e5e5;
+font-size: 25px;
+position: relative;
+	top: 15%;
+	  left: 25%;
+
+	}
+#response{
+	background-color : #f9e5e5;
+font-size: 25px;
+position: relative;
+	top: 15%;
+	  left: 25%;
+color: red;
+}
+#list{
+	background-color : #ccccff
+}
+li{
+	font-size: 25px
+}
+#inputs{
+	position: relative
+	top: 5%;
+	  left: 50%;
+	  height: 2px;
+}
+#noteEmailer {
+	 width: 100%;
+	 height: 40px;
+	 background-color: red;
+}
+</style>
+<body id="background"">
+<button id="noteEmailer" onclick="goBack(this.id)">Back To Home</button>
+<input id="listItem" value="UID" placeholder="QUESTION">
+<input id="response" placeholder="RESPONSE" value="ENTER UID" onkeydown="aaa(event)">
+<ul id="list" onclick="selectText('list'); copy ();" contenteditable="true">
+	<li id="first">DISASTER FORBEARANCE REQUEST</li>
+</ul>
+<a id="emailer" href="" target="_top">Email</a><button id="reset" onclick="reseta()">RESET</button>
+<button onclick="lyricall()">LYRICAL</button>
+<button onclick="ace()">ACE</button>
+<script>
+window.onload = function() {
+    document.getElementById("response").focus();
+	document.getElementById("response").select();
+};
+var i = 0;
+var jO = {"lR":[]}
+var listMarker = 0;
+/*function email(event){
+var x = event.keyCode;
+	if(x == 65){
+
+
+	alert("email");
+	}
+}*/
+function ace(){
+
+    window.open("https://flo.ace.info53.com:5080/ace/processECIFAdvancedSearchAction.do");
+
+}
+function lyricall(){
+
+    window.open("https://s1flokydcdial13:8443/UDAgentPL/opt/http/webstation/index.jsp");
+
+}
+function reseta(){
+location.reload();
+}
+function looper(){
+var allListItems = document.querySelectorAll("li");
+	for(i=0;i<allListItems.length;i++){
+	selectText(allListItems[i].id);
+}
+}
+function selectText(containerid) {
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(containerid));
+            range.select();
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(containerid));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+			setTimeout(function(){ document.getElementById("emailer").click(); }, 1000);
+			document.getElementById("list").click();
+			/*reseta();*/
+        }
+    }
+   /*function emailAcct(event){
+   var r = document.getElementById("response")
+   var x = event.keyCode;
+   if(x == 13){
+   if (document.getElementById("listItem").value == "Account #"){
+   document.getElementById("emailer").setAttribute("href", "mailto:Karen.Adams2@53.com; Jennifer.Leiva2@53.com; Adam.Bathalter@53.com; Gene.Tudor@53.com?Subject=%20DISASTER%20%20%20" + disasterType.substr(11, 7) + "%20"+document.getElementById("1").innerHTML)
+   }
+   }
+   }*/
+ function copy () {
+			document.execCommand ('copy', false, null);
+        }
+function aaa(event){
+
+	var listItems = ["Account #", "Hurricane ", "Account Holder Name", "Investor", "Street Address", "City", "State", "Zip Code", "Best Contact #", "# Payments Due: (I.E. 1)", "Disaster Impact", "FEMA designated area", "Principal Balance", "Does borrower want forb", "Alternate Mailing Address for borrower", "Borrower email address", "ABP"];
+
+    var x = event.keyCode;
+        if(x == 13){
+            makeList();
+			document.getElementById("listItem").value = listItems[i];
+			document.getElementById("response").value = "";
+    	                i++
+                        if(i == 18){
+						var disasterType = document.getElementById("2").innerHTML
+                        alert("END OF LIST!")
+                        i=0
+						document.getElementById("list").focus();
+
+						document.getElementById("list").click();
+						alert("Opening Email Now")
+
+						/*placement()*/
+                        document.getElementById("response").value = "";
+						document.getElementById("emailer").setAttribute("href", "mailto:Karen.Adams2@53.com; Jennifer.Leiva2@53.com; Adam.Bathalter@53.com; Gene.Tudor@53.com?Subject=%20DISASTER%20%20%20" + disasterType.substr(11, 7) + "%20"+document.getElementById("1").innerHTML+"")
+
+    }
+
+}
+}
+
+function makeList() {
+
+var a = document.getElementById("listItem").value;
+var r = document.getElementById("response").value;
+	var node = document.createElement("LI");
+    var textnode = document.createTextNode(a + ": " + r);
+    node.appendChild(textnode);
+    document.getElementById("list").appendChild(node).setAttribute("id", JSON.stringify(listMarker), "onmouseup", "copy()");
+listMarker++;
+}
+
+function abc() {
+var response = document.getElementById("response").value;
+var listItem = document.getElementById("listItem").value;
+	var liRe = {"listItem": "", "response": ""}
+   	liRe.listItem = listItem;
+    liRe.response = response;
+    jO.lR.push(liRe);
+}
+
+/*function placement(){
+var text = "";
+for(var i=0;i<jO.lR.length;i++){
+	text += jO.lR[i].listItem + " " + jO.lR[i].response;
+}
+document.getElementById("txt").innerHTML = text;
+}*/
+</script>
+</body>
+</html>

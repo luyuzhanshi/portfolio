@@ -1,0 +1,33 @@
+
+	<!--billName/billAmount/dateToBeSorted	input	boxes/	listMaking	button:	horizontal	arrangement-->
+  <script src='../../javascript/goBack.js'></script>
+  <link href="css/index.css" type="text/css" rel="stylesheet" />
+  <button id="annualBudgetorPrototype" onclick="goBack(this.id)">Back To Home</button>
+	<input id="hourlyPayRateInput" maxlength="6" placeholder="HOURLY PAY RATE" onkeyup="moneyStorage(this)" onkeydown="taskRouter(event, this)">
+	<input id="numberOfHoursInput" placeholder="NUMBER OF HOURS A DAY" onkeydown="taskRouter(event, this)">
+	<input id="daysAweekInput" maxlength="1" placeholder="DAYS A WEEK" onkeydown="taskRouter(event, this)">
+	<input id="taxPercentInput" maxlength="3" placeholder="TAX PERCENTAGE" onkeydown="moneyStorage(this);taskRouter(event, this)">
+	<input id="firstPayDateInput" type="date" placeholder="FIRST PAY DATE" onchange="taskRouter(event, 	this)">
+	<br/>
+	<div id="dailyPayGrossDisplay"></div>
+	<div id="weeklyPayGrossDisplay"></div>
+	<div id="biWeeklyPayGrossDisplay"></div>
+	<br/>
+	<div id="dailyPayNetDisplay"></div>
+	<div id="weeklyPayNetDisplay"></div>
+	<div id="biWeeklyPayNetDisplay"></div>
+	<br/>
+	<div id="dailyTaxCostDisplay"></div>
+	<div id="weeklyTaxCostDisplay"></div>
+	<div id="biWeeklyTaxCostDisplay"></div>
+	<br/>
+	<input id="billName" placeholder="BILL NAME" onkeydown="taskRouter(event, this)">
+	<input id="billAmount"	placeholder="BILL AMOUNT" maxlength="13" onkeyup="moneyStorage(this)" onkeydown="taskRouter(event, this);">
+	<input id="dateToBeSorted"	type="date"	onchange="taskRouter(event,	this)">
+	<button	onclick="makeList()">ORDER	DATES</button>
+	<br/>
+	<!--billName/billAmount/date	input	boxes/	sort	button-->
+	<!--display	results	element-->
+	<div><ul id="dateDisplay"></ul><p>- - -</p><ul id="payDateDisplay"></ul></div>
+	<!--display	results	element-->
+  <script src='javascript/index.js'></script>

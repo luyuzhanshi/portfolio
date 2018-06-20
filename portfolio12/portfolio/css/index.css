@@ -1,0 +1,355 @@
+div {
+  position: relative;
+  height: 110px;
+  width: 100%;
+  top: 5%;
+  left: 0%;
+  font-size': 15;
+  opacity: 0.5;
+  background: linear-gradient(to bottom, rgba(146,119,38,1) 8%,rgba(230,184,44,1) 37%,rgba(230,184,44,1) 37%,rgba(98,75,8,1) 75%,rgba(80,60,0,1) 93%);
+  position: relative;
+  display: flex;
+  height: 82px;
+  font-size: 21px;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+  background-color: #333;
+  text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px;
+}
+table {
+  position: fixed;
+  width: 100%;
+  height: 90%;
+  background-color: blue;
+}
+@ changeColor {
+  0% {background: ;}
+  4.34%  {background: #DF0174;}
+  8.68% {background: #DF01A5;}
+  13.02% {background: #DF01D7;}
+  17.36% {background: #A901DB;}
+  21.70% {background: #7401DF;}
+  26.04% {background: #3A01DF;}
+  30.38% {background: #013ADF;}
+  34.72% {background: #0174DF;}
+  39.06%  {background: #01A9DB;}
+  43.40%  {background: #01DFA5;}
+  47.74%  {background: #01DFD7;}
+  52.08%  {background: #01DFA5;}
+  56.42%	 {background: #01DF74;}
+  60.76% {background: #01DF3A;}
+  65.10% {background: #01DF01;}
+  69.44% {background: #3ADF00;}
+  73.78% {background: #74DF00;}
+  78.12% {background: #A5DF00;}
+  82.46%  {background: #D7DF01;}
+  86.80%  {background: #DBA901;}
+  91.14%  {background: #DF7401;}
+  95.48%  {background: #DF3A01;}
+  100%	 {background: #DF0101;}
+}
+td {
+  background: linear-gradient(to bottom, rgba(97,30,25,1) 8%,rgba(161,29,19,1) 37%,rgba(161,29,19,1) 37%,rgba(65,9,5,1) 75%,rgba(54,4,0,1) 93%);
+}
+#skipTraceAppOverlay {
+  position: relative;
+  height: 110px;
+  width: 100%;
+  top: 5%;
+  left: 0%;
+  font-size': 15;
+  opacity: 0.5;
+  background-color: red;
+  position: relative;
+  display: flex;
+  height: 82px;
+  font-size: 21px;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+}
+#skipTraceCode {
+  position: relative;
+  top: 0px;
+  width: 0%;
+  left: 0px;
+  background-color: red;
+}
+#spreadSheetEditorAppOverlay {
+  position: relative;
+  height: 110px;
+  width: 100%;
+  top: 5%;
+  left: 0%;
+  font-size': 15;
+  opacity: 0.5;
+  background-color: red;
+  position: relative;
+  display: flex;
+  height: 82px;
+  font-size: 21px;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+}
+#spreadSheetEditorCode {
+  position: relative;
+  top: 0px;
+  width: 0%;
+  left: 0px;
+  background-color: red;
+}
+#budgetorOverlay {
+  position: relative;
+  height: 110px;
+  width: 100%;
+  top: 5%;
+  left: 0%;
+  font-size': 15;
+  opacity: 0.5;
+  background-color: red;
+  height: 82px;
+  font-size: 21px;
+  font-weight: bolder;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+}
+#budgetorCode {
+  position: relative;
+  top: 0px;
+  width: 0%;
+  left: 0px;
+  background-color: red;
+}
+#budgetorPrototypeOverlay {
+  position: relative;
+  height: 110px;
+  width: 100%;
+  top: 5%;
+  left: 0%;
+  font-size': 15;
+  opacity: 0.5;
+  background-color: red;
+  position: relative;
+  display: flex;
+  height: 82px;
+  font-size: 21px;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+}
+#budgetorPrototypeCode {
+  position: relative;
+  top: 0px;
+  width: 0%;
+  left: 0px;
+  background-color: red;
+}
+#calculatorOverlay {
+  position: relative;
+  height: 110px;
+  width: 100%;
+  top: 5%;
+  left: 0%;
+  font-size': 15;
+  opacity: 0.5;
+  background-color: red;
+  position: relative;
+  display: flex;
+  height: 82px;
+  font-size: 21px;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+}
+#calculatorCode {
+  position: relative;
+  top: 0px;
+  width: 0%;
+  left: 0px;
+  background-color: red;
+}
+#emailNotesOverlay {
+  position: relative;
+  height: 110px;
+  width: 100%;
+  top: 5%;
+  left: 0%;
+  opacity: 1;
+  background-color: red;
+  position: relative;
+  display: flex;
+  height: 82px;
+  font-size: 21px;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+}
+#emailNotesCode {
+  position: relative;
+  top: 0px;
+  width: 0%;
+  left: 0px;
+  background-color: red;
+}
+#sitePrototypeOverlay {
+  position: relative;
+  height: 110px;
+  width: 100%;
+  left: 0%;
+  font-size': 15;
+  opacity: 0.5;
+  background-color: red;
+  position: relative;
+  display: flex;
+  height: 82px;
+  font-size: 21px;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+}
+#sitePrototypeCode {
+  position: relative;
+  top: 0px;
+  width: 0%;
+  left: 0px;
+  background-color: red;
+}
+.information {
+  position: relative;
+  top: 0px;
+  width: 0%;
+  left: 0px;
+  background-color: green;
+}
+.name {
+  position: relative;
+  top: 0px;
+  width: 100%;
+  left: 0px;
+  background-color: orange;
+  font-size: 30px;
+}
+.codeDownload {
+  height: 100%;
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: black;
+  background: linear-gradient(to bottom, rgba(195,93,75,1) 8%,rgba(241,173,161,1) 37%,rgba(241,173,161,1) 37%,rgba(141,34,15,1) 75%,rgba(117,18,1,1) 93%);
+}
+#banner {
+  height:100%;
+  top: 0%;
+  background: linear-gradient(45deg, rgba(243,226,199,1) 43%,rgba(182,141,76,1) 61%,rgba(193,158,103,1) 93%,rgba(193,158,103,1) 93%,rgba(233,212,179,1) 100%);
+}
+#profilePicture {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  right: 0%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  filter: sepia(100%);
+}
+#enterWords {
+  display: flex;
+  position: relative;
+  height: 100%;
+  width: 50%;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  background-color: black;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #49ff18, 0 0 30px #49ff18, 0 0 40px #49ff18, 0 0 55px #49ff18, 0 0 75px #49ff18;
+}
+#footer {
+  position: relative;
+  height: 110px;
+  width: 144%;
+  bottom: 14px;
+  left: 0%;
+  font-size': 15;
+  opacity: 0.5;
+  background-color: red;
+  position: relative;
+  display: flex;
+  height: 157%;
+  font-size: 21px;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+  background: linear-gradient(45deg, rgba(243,226,199,1) 43%,rgba(182,141,76,1) 61%,rgba(193,158,103,1) 93%,rgba(193,158,103,1) 93%,rgba(233,212,179,1) 100%);
+}
+#skipTrace2 {
+  background: linear-gradient(to bottom, rgba(105,146,38,1) 8%,rgba(159,230,44,1) 37%,rgba(159,230,44,1) 37%,rgba(63,98,8,1) 75%,rgba(49,80,0,1) 93%);
+  color: #fff;
+  background-color: #333;
+  text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px;
+  font-size: 30px;
+}
+#spreadSheetEditor {
+  background: linear-gradient(to bottom, rgba(105,146,38,1) 8%,rgba(159,230,44,1) 37%,rgba(159,230,44,1) 37%,rgba(63,98,8,1) 75%,rgba(49,80,0,1) 93%);
+  color: #fff;
+  background-color: #333;
+  text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px;
+  font-size: 30px;
+}
+#budgetor {
+  background: linear-gradient(to bottom, rgba(105,146,38,1) 8%,rgba(159,230,44,1) 37%,rgba(159,230,44,1) 37%,rgba(63,98,8,1) 75%,rgba(49,80,0,1) 93%);
+  color: #fff;
+  background-color: #333;
+  text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px;
+  font-size: 30px;
+}
+#budgetorPrototype {
+  background: linear-gradient(to bottom, rgba(105,146,38,1) 8%,rgba(159,230,44,1) 37%,rgba(159,230,44,1) 37%,rgba(63,98,8,1) 75%,rgba(49,80,0,1) 93%);
+  color: #fff;
+  background-color: #333;
+  text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px;
+  font-size: 30px;
+}
+#calculator {
+  background: linear-gradient(to bottom, rgba(105,146,38,1) 8%,rgba(159,230,44,1) 37%,rgba(159,230,44,1) 37%,rgba(63,98,8,1) 75%,rgba(49,80,0,1) 93%);
+  color: #fff;
+  background-color: #333;
+  text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px;
+  font-size: 30px;
+}
+#emailNotes {
+  background: linear-gradient(to bottom, rgba(105,146,38,1) 8%,rgba(159,230,44,1) 37%,rgba(159,230,44,1) 37%,rgba(63,98,8,1) 75%,rgba(49,80,0,1) 93%);
+  color: #fff;
+  background-color: #333;
+  text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px;
+  font-size: 30px;
+}
+#sitePrototype {
+  background: linear-gradient(to bottom, rgba(105,146,38,1) 8%,rgba(159,230,44,1) 37%,rgba(159,230,44,1) 37%,rgba(63,98,8,1) 75%,rgba(49,80,0,1) 93%);
+  color: #fff;
+  background-color: #333;
+  text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px;
+  font-size: 30px;
+}

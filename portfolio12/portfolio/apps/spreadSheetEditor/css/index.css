@@ -1,0 +1,219 @@
+#downloadButton{
+  position: fixed;
+  top: 27%;
+  width: 20%;
+  right: 20%;
+  height: 32px;
+  border-radius: 2px 0px 25px;
+  border-style: solid;
+  border-width: 0px 5px 5px 0px;
+  border-color: white;
+  background: linear-gradient(#ffffff,#000000);
+  color: white;
+  text-align: center
+}
+#timeWrapper{
+  width: 100%;
+  height: 123px;
+  background: radial-gradient(#000000,#ffffff);
+  font-style: oblique;
+  font-family: "Magneto", Times, serif;
+  text-align: center;
+  font-size: 40px;
+  color: white;
+  animation: changeColor2 5s infinite linear;
+}
+#clock{
+  animation: changeColor 5s infinite linear;
+}
+#date{
+  animation: changeColor 5s infinite linear;
+}
+body{
+  background: black;
+}
+
+
+@keyframes changeColor3 {
+0.00%{background:radial-gradient(#ffffff,#000000);}
+2.40%{background:radial-gradient(#f2f2f2,#0d0d0d);}
+4.80%{background:radial-gradient(#e6e6e6,#1a1a1a);}
+7.20%{background:radial-gradient(#d9d9d9,#262626);}
+9.60%{background:radial-gradient(#cccccc,#333333);}
+12.00%{background:radial-gradient(#bfbfbf,#333333);}
+14.40%{background:radial-gradient(#b3b3b3,#404040);}
+16.80%{background:radial-gradient(#a6a6a6,#4d4d4d);}
+19.20%{background:radial-gradient(#999999,#595959);}
+21.60%{background:radial-gradient(#8c8c8c,#666666);}
+24.00%{background:radial-gradient(#808080,#737373);}
+26.40%{background:radial-gradient(#737373,#808080);}
+28.80%{background:radial-gradient(#666666,#8c8c8c);}
+31.20%{background:radial-gradient(#595959,#999999);}
+33.60%{background:radial-gradient(#4d4d4d,#a6a6a6);}
+36.00%{background:radial-gradient(#404040,#b3b3b3);}
+38.40%{background:radial-gradient(#333333,#bfbfbf);}
+40.80%{background:radial-gradient(#262626,#cccccc);}
+43.20%{background:radial-gradient(#1a1a1a,#d9d9d9);}
+45.60%{background:radial-gradient(#0d0d0d,#e6e6e6);}
+48.00%{background:radial-gradient(#000000,#f2f2f2);}
+100%{background:radial-gradient(#ffffff,#ffffff);}
+98.40%{background:radial-gradient(#f2f2f2,#000000);}
+96.00%{background:radial-gradient(#e6e6e6,#0d0d0d);}
+93.60%{background:radial-gradient(#d9d9d9,#1a1a1a);}
+91.20%{background:radial-gradient(#cccccc,#262626);}
+88.80%{background:radial-gradient(#bfbfbf,#333333);}
+86.40%{background:radial-gradient(#b3b3b3,#404040);}
+84.00%{background:radial-gradient(#a6a6a6,#4d4d4d);}
+81.60%{background:radial-gradient(#999999,#595959);}
+79.20%{background:radial-gradient(#8c8c8c,#666666);}
+76.80%{background:radial-gradient(#808080,#737373);}
+74.40%{background:radial-gradient(#737373,#808080);}
+72.00%{background:radial-gradient(#666666,#8c8c8c);}
+69.60%{background:radial-gradient(#595959,#999999);}
+67.20%{background:radial-gradient(#4d4d4d,#a6a6a6);}
+64.80%{background:radial-gradient(#404040,#b3b3b3);}
+62.40%{background:radial-gradient(#333333,#bfbfbf);}
+60.00%{background:radial-gradient(#333333,#cccccc);}
+57.60%{background:radial-gradient(#262626,#d9d9d9);}
+55.20%{background:radial-gradient(#1a1a1a,#e6e6e6);}
+52.80%{background:radial-gradient(#0d0d0d,#f2f2f2);}
+50.40%{background:radial-gradient(#000000,#ffffff);}
+}
+
+
+
+@keyframes changeColor {
+0.00%	{background: 	#ffffff	;}
+2.40%	{background: 	#f2f2f2	;}
+4.80%	{background: 	#e6e6e6	;}
+7.20%	{background: 	#d9d9d9	;}
+9.60%	{background: 	#cccccc	;}
+12.00%	{background: 	#bfbfbf	;}
+14.40%	{background: 	#b3b3b3	;}
+16.80%	{background: 	#a6a6a6	;}
+19.20%	{background: 	#999999	;}
+21.60%	{background: 	#8c8c8c	;}
+24.00%	{background: 	#808080	;}
+26.40%	{background: 	#737373	;}
+28.80%	{background: 	#666666	;}
+31.20%	{background: 	#595959	;}
+33.60%	{background: 	#4d4d4d	;}
+36.00%	{background: 	#404040	;}
+38.40%	{background: 	#333333	;}
+40.80%	{background: 	#262626	;}
+43.20%	{background: 	#1a1a1a	;}
+45.60%	{background: 	#0d0d0d	;}
+48.00%	{background: 	#000000	;}
+100%	{background: 	#ffffff	;}
+98.40%	{background: 	#f2f2f2	;}
+96.00%	{background: 	#e6e6e6	;}
+93.60%	{background: 	#d9d9d9	;}
+91.20%	{background: 	#cccccc	;}
+88.80%	{background: 	#bfbfbf	;}
+86.40%	{background: 	#b3b3b3	;}
+84.00%	{background: 	#a6a6a6	;}
+81.60%	{background: 	#999999	;}
+79.20%	{background: 	#8c8c8c	;}
+76.80%	{background: 	#808080	;}
+74.40%	{background: 	#737373	;}
+72.00%	{background: 	#666666	;}
+69.60%	{background: 	#595959	;}
+67.20%	{background: 	#4d4d4d	;}
+64.80%	{background: 	#404040	;}
+62.40%	{background: 	#333333	;}
+60.00%	{background: 	#333333	;}
+57.60%	{background: 	#262626	;}
+55.20%	{background: 	#1a1a1a	;}
+52.80%	{background: 	#0d0d0d	;}
+50.40%	{background: 	#000000	;}
+
+}
+
+@keyframes changeColor2 {
+48.00%	{background: 	#ffffff	;}
+45.60%	{background: 	#f2f2f2	;}
+43.20%	{background: 	#e6e6e6	;}
+40.80%	{background: 	#d9d9d9	;}
+38.40%	{background: 	#cccccc	;}
+36.00%	{background: 	#bfbfbf	;}
+33.60%	{background: 	#b3b3b3	;}
+31.20%	{background: 	#a6a6a6	;}
+28.80%	{background: 	#999999	;}
+26.40%	{background: 	#8c8c8c	;}
+24.00%	{background: 	#808080	;}
+21.60%	{background: 	#737373	;}
+19.20%	{background: 	#666666	;}
+16.80%	{background: 	#595959	;}
+14.40%	{background: 	#4d4d4d	;}
+12.00%	{background: 	#404040	;}
+9.60%	{background: 	#333333	;}
+7.20%	{background: 	#262626	;}
+4.80%	{background: 	#1a1a1a	;}
+2.40%	{background: 	#0d0d0d	;}
+0.00%	{background: 	#000000	;}
+50.40%	{background: 	#ffffff	;}
+52.80%	{background: 	#f2f2f2	;}
+55.20%	{background: 	#e6e6e6	;}
+57.60%	{background: 	#d9d9d9	;}
+60.00%	{background: 	#cccccc	;}
+62.40%	{background: 	#bfbfbf	;}
+64.80%	{background: 	#b3b3b3	;}
+67.20%	{background: 	#a6a6a6	;}
+69.60%	{background: 	#999999	;}
+72.00%	{background: 	#8c8c8c	;}
+74.40%	{background: 	#808080	;}
+76.80%	{background: 	#737373	;}
+79.20%	{background: 	#666666	;}
+81.60%	{background: 	#595959	;}
+84.00%	{background: 	#4d4d4d	;}
+86.40%	{background: 	#404040	;}
+88.80%	{background: 	#333333	;}
+91.20%	{background: 	#333333	;}
+93.60%	{background: 	#262626	;}
+96.00%	{background: 	#1a1a1a	;}
+98.40%	{background: 	#0d0d0d	;}
+100%	{background: 	#000000	;}
+
+}
+
+@keyframes translateTitle{
+
+0% {transform: height: 0, width: 0; }
+5.88% {transform: height: 0, width: 0; }
+11.76% {transform: height: 5, width: 5; }
+17.64% {transform: height: 10, width: 10; }
+23.52% {transform: height: 15, width: 15; }
+29.40% {transform: height: 20, width: 20; }
+35.28% {transform: height: 25, width: 25; }
+41.16% {transform: height: 30, width: 30; }
+47.04% {transform: height: 35, width: 35; }
+52.92% {transform: height: 40, width: 40; }
+58.80% {transform: height: 45, width: 45; }
+64.68% {transform: height: 50, width: 50; }
+70.56% {transform: height: 55, width: 55; }
+76.44% {transform: height: 60, width: 60; }
+82.32% {transform: height: 65, width: 65; }
+88.20% {transform: height: 70, width: 70; }
+94.08% {transform: height: 75, width: 75; }
+100% {transform: height: 80, width: 80; }
+}
+@keyframes aaa{
+
+0% {transform: translateX(0px); }
+5% { transform: translateX(10px); }
+7% {transform: translateX(20px); }
+9% { transform: translateX(30px); }
+11% {transform: translateX(40px); }
+13% { transform: translateX(50px); }
+20% {transform: translateX(60px); }
+25% { transform: translateX(70px); }
+30% {transform: translateX(80px); }
+40% { transform: translateX(90px); }
+50% {transform: translateX(100px); }
+55% { transform: translateX(150px); }
+}
+#spreadSheetEditor {
+width: 100%;
+height: 70px;
+background-color: red;
+}

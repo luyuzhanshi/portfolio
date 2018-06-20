@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html>
+	  <head>
+			<title>Spreadsheet Editor</title>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.5.0/papaparse.js"></script>
+			<script src='../goBack.js'></script>
+	  </head>
+	  <style>
+		#downloadButton{
+			position: fixed;
+			top: 27%;
+			width: 20%;
+			right: 20%;
+			height: 32px;
+			border-radius: 2px 0px 25px;
+			border-style: solid;
+			border-width: 0px 5px 5px 0px;
+			border-color: white;
+			background: linear-gradient(#ffffff,#000000);
+			color: white;
+			text-align: center
+		}
+		#timeWrapper{
+			width: 100%;
+			height: 123px;
+			background: radial-gradient(#000000,#ffffff);
+			font-style: oblique;
+			font-family: "Magneto", Times, serif;
+			text-align: center;
+			font-size: 40px;
+			color: white;
+			animation: changeColor2 5s infinite linear;
+		}
+		#clock{
+			animation: changeColor 5s infinite linear;
+		}
+		#date{
+			animation: changeColor 5s infinite linear;
+		}
+		body{
+			background: black;
+		}
+
+
+@keyframes changeColor3 {
+0.00%{background:radial-gradient(#ffffff,#000000);}
+2.40%{background:radial-gradient(#f2f2f2,#0d0d0d);}
+4.80%{background:radial-gradient(#e6e6e6,#1a1a1a);}
+7.20%{background:radial-gradient(#d9d9d9,#262626);}
+9.60%{background:radial-gradient(#cccccc,#333333);}
+12.00%{background:radial-gradient(#bfbfbf,#333333);}
+14.40%{background:radial-gradient(#b3b3b3,#404040);}
+16.80%{background:radial-gradient(#a6a6a6,#4d4d4d);}
+19.20%{background:radial-gradient(#999999,#595959);}
+21.60%{background:radial-gradient(#8c8c8c,#666666);}
+24.00%{background:radial-gradient(#808080,#737373);}
+26.40%{background:radial-gradient(#737373,#808080);}
+28.80%{background:radial-gradient(#666666,#8c8c8c);}
+31.20%{background:radial-gradient(#595959,#999999);}
+33.60%{background:radial-gradient(#4d4d4d,#a6a6a6);}
+36.00%{background:radial-gradient(#404040,#b3b3b3);}
+38.40%{background:radial-gradient(#333333,#bfbfbf);}
+40.80%{background:radial-gradient(#262626,#cccccc);}
+43.20%{background:radial-gradient(#1a1a1a,#d9d9d9);}
+45.60%{background:radial-gradient(#0d0d0d,#e6e6e6);}
+48.00%{background:radial-gradient(#000000,#f2f2f2);}
+100%{background:radial-gradient(#ffffff,#ffffff);}
+98.40%{background:radial-gradient(#f2f2f2,#000000);}
+96.00%{background:radial-gradient(#e6e6e6,#0d0d0d);}
+93.60%{background:radial-gradient(#d9d9d9,#1a1a1a);}
+91.20%{background:radial-gradient(#cccccc,#262626);}
+88.80%{background:radial-gradient(#bfbfbf,#333333);}
+86.40%{background:radial-gradient(#b3b3b3,#404040);}
+84.00%{background:radial-gradient(#a6a6a6,#4d4d4d);}
+81.60%{background:radial-gradient(#999999,#595959);}
+79.20%{background:radial-gradient(#8c8c8c,#666666);}
+76.80%{background:radial-gradient(#808080,#737373);}
+74.40%{background:radial-gradient(#737373,#808080);}
+72.00%{background:radial-gradient(#666666,#8c8c8c);}
+69.60%{background:radial-gradient(#595959,#999999);}
+67.20%{background:radial-gradient(#4d4d4d,#a6a6a6);}
+64.80%{background:radial-gradient(#404040,#b3b3b3);}
+62.40%{background:radial-gradient(#333333,#bfbfbf);}
+60.00%{background:radial-gradient(#333333,#cccccc);}
+57.60%{background:radial-gradient(#262626,#d9d9d9);}
+55.20%{background:radial-gradient(#1a1a1a,#e6e6e6);}
+52.80%{background:radial-gradient(#0d0d0d,#f2f2f2);}
+50.40%{background:radial-gradient(#000000,#ffffff);}
+}
+
+
+
+@keyframes changeColor {
+0.00%	{background: 	#ffffff	;}
+2.40%	{background: 	#f2f2f2	;}
+4.80%	{background: 	#e6e6e6	;}
+7.20%	{background: 	#d9d9d9	;}
+9.60%	{background: 	#cccccc	;}
+12.00%	{background: 	#bfbfbf	;}
+14.40%	{background: 	#b3b3b3	;}
+16.80%	{background: 	#a6a6a6	;}
+19.20%	{background: 	#999999	;}
+21.60%	{background: 	#8c8c8c	;}
+24.00%	{background: 	#808080	;}
+26.40%	{background: 	#737373	;}
+28.80%	{background: 	#666666	;}
+31.20%	{background: 	#595959	;}
+33.60%	{background: 	#4d4d4d	;}
+36.00%	{background: 	#404040	;}
+38.40%	{background: 	#333333	;}
+40.80%	{background: 	#262626	;}
+43.20%	{background: 	#1a1a1a	;}
+45.60%	{background: 	#0d0d0d	;}
+48.00%	{background: 	#000000	;}
+100%	{background: 	#ffffff	;}
+98.40%	{background: 	#f2f2f2	;}
+96.00%	{background: 	#e6e6e6	;}
+93.60%	{background: 	#d9d9d9	;}
+91.20%	{background: 	#cccccc	;}
+88.80%	{background: 	#bfbfbf	;}
+86.40%	{background: 	#b3b3b3	;}
+84.00%	{background: 	#a6a6a6	;}
+81.60%	{background: 	#999999	;}
+79.20%	{background: 	#8c8c8c	;}
+76.80%	{background: 	#808080	;}
+74.40%	{background: 	#737373	;}
+72.00%	{background: 	#666666	;}
+69.60%	{background: 	#595959	;}
+67.20%	{background: 	#4d4d4d	;}
+64.80%	{background: 	#404040	;}
+62.40%	{background: 	#333333	;}
+60.00%	{background: 	#333333	;}
+57.60%	{background: 	#262626	;}
+55.20%	{background: 	#1a1a1a	;}
+52.80%	{background: 	#0d0d0d	;}
+50.40%	{background: 	#000000	;}
+
+}
+
+@keyframes changeColor2 {
+48.00%	{background: 	#ffffff	;}
+45.60%	{background: 	#f2f2f2	;}
+43.20%	{background: 	#e6e6e6	;}
+40.80%	{background: 	#d9d9d9	;}
+38.40%	{background: 	#cccccc	;}
+36.00%	{background: 	#bfbfbf	;}
+33.60%	{background: 	#b3b3b3	;}
+31.20%	{background: 	#a6a6a6	;}
+28.80%	{background: 	#999999	;}
+26.40%	{background: 	#8c8c8c	;}
+24.00%	{background: 	#808080	;}
+21.60%	{background: 	#737373	;}
+19.20%	{background: 	#666666	;}
+16.80%	{background: 	#595959	;}
+14.40%	{background: 	#4d4d4d	;}
+12.00%	{background: 	#404040	;}
+9.60%	{background: 	#333333	;}
+7.20%	{background: 	#262626	;}
+4.80%	{background: 	#1a1a1a	;}
+2.40%	{background: 	#0d0d0d	;}
+0.00%	{background: 	#000000	;}
+50.40%	{background: 	#ffffff	;}
+52.80%	{background: 	#f2f2f2	;}
+55.20%	{background: 	#e6e6e6	;}
+57.60%	{background: 	#d9d9d9	;}
+60.00%	{background: 	#cccccc	;}
+62.40%	{background: 	#bfbfbf	;}
+64.80%	{background: 	#b3b3b3	;}
+67.20%	{background: 	#a6a6a6	;}
+69.60%	{background: 	#999999	;}
+72.00%	{background: 	#8c8c8c	;}
+74.40%	{background: 	#808080	;}
+76.80%	{background: 	#737373	;}
+79.20%	{background: 	#666666	;}
+81.60%	{background: 	#595959	;}
+84.00%	{background: 	#4d4d4d	;}
+86.40%	{background: 	#404040	;}
+88.80%	{background: 	#333333	;}
+91.20%	{background: 	#333333	;}
+93.60%	{background: 	#262626	;}
+96.00%	{background: 	#1a1a1a	;}
+98.40%	{background: 	#0d0d0d	;}
+100%	{background: 	#000000	;}
+
+}
+
+@keyframes translateTitle{
+
+0% {transform: height: 0, width: 0; }
+5.88% {transform: height: 0, width: 0; }
+11.76% {transform: height: 5, width: 5; }
+17.64% {transform: height: 10, width: 10; }
+23.52% {transform: height: 15, width: 15; }
+29.40% {transform: height: 20, width: 20; }
+35.28% {transform: height: 25, width: 25; }
+41.16% {transform: height: 30, width: 30; }
+47.04% {transform: height: 35, width: 35; }
+52.92% {transform: height: 40, width: 40; }
+58.80% {transform: height: 45, width: 45; }
+64.68% {transform: height: 50, width: 50; }
+70.56% {transform: height: 55, width: 55; }
+76.44% {transform: height: 60, width: 60; }
+82.32% {transform: height: 65, width: 65; }
+88.20% {transform: height: 70, width: 70; }
+94.08% {transform: height: 75, width: 75; }
+100% {transform: height: 80, width: 80; }
+ }
+ @keyframes aaa{
+
+0% {transform: translateX(0px); }
+5% { transform: translateX(10px); }
+7% {transform: translateX(20px); }
+9% { transform: translateX(30px); }
+11% {transform: translateX(40px); }
+13% { transform: translateX(50px); }
+20% {transform: translateX(60px); }
+25% { transform: translateX(70px); }
+30% {transform: translateX(80px); }
+40% { transform: translateX(90px); }
+50% {transform: translateX(100px); }
+55% { transform: translateX(150px); }
+ }
+ #spreadSheetEditor {
+	 	width: 100%;
+    height: 70px;
+		background-color: red;
+ }
+	  </style>
+		<body>
+		<button id="spreadSheetEditor" onclick="goBack(this.id)">Back To Home</button>
+		<div id="timeWrapper">
+			<p id="clock"></p>
+			<p id="date"></p>
+		</div>
+	<div id="app"></div>
+	<button id="downloadButton" onclick="downloadTableBNL()">download</button>
+
+  <script type="text/babel">
+	function downloadTableBNL(){
+	  var today = new Date();
+	  var h = today.getHours();
+	  var m = today.getMinutes();
+	  var s = today.getSeconds();
+	  var day = today.getDay();
+	  var date = today.getDate();
+	  var year = today.getFullYear();
+	  var month = today.getMonth();
+	  var monArray = [0,"JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+	  var week = [0,"MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"]
+	  var time = [0,1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12]
+	  var hourChecker = time[h]
+	  var amPm = function(){
+	        if(h < 12){
+	                return "am"
+	        }
+	        if(h >= 12){
+	                return "pm"
+	        }
+	  }
+	        var currentTime = time[h] + "-" + m + amPm();
+	        setSpreadSheetName(currentTime)
+	}
+
+	function setSpreadSheetName(currentTime) {
+	    var getName = prompt("What would you like to call your spreadsheet?");
+	    if (getName != null) {
+	       var spreadSheetName = getName + currentTime+".csv";
+	           exp(spreadSheetName)
+	    }
+	}
+	function exp(filename){
+	var mainInfo = [];
+	var titles = [];
+	var allRow = document.querySelectorAll("tr");
+	var allTitle = allRow[0].cells;
+	        for(var q=0;q<allRow.length;q++){
+	                var singleRow = [];
+	                var lengthOfColumns = allRow[q].querySelectorAll("td");
+	                for (var h=0;h<lengthOfColumns.length; h++){
+	                        singleRow.push(lengthOfColumns[h].innerText)
+	                }
+	                mainInfo.push(singleRow.join(","));
+	        }
+	        titles[0] = "key"
+	        for (var hh=0;hh<allTitle.length; hh++){
+	                        titles.push(allTitle[hh].innerText)
+	                }
+
+	                mainInfo[0] = titles
+	                downloadCSV(mainInfo.join("\n"), filename);
+
+	        }
+
+	function downloadCSV(csv, filename){
+	var csvFileSpace;
+	var downloadLink;
+	csvFileSpace = new Blob([csv], {type:"text/csv"});
+	downloadLink = document.createElement("a");
+	downloadLink.download = filename;
+	downloadLink.href = window.URL.createObjectURL(csvFileSpace);
+	downloadLink.style.display = "none";
+	document.body.appendChild(downloadLink);
+	downloadLink.click();
+	}
+
+	window.onload = startTime()
+
+	function startTime(){
+	  var today = new Date();
+	  var h = today.getHours();
+	  var m = today.getMinutes();
+	  var s = today.getSeconds();
+	  var day = today.getDay();
+	  var date1 = today.getDate();
+	  var year = today.getFullYear();
+	  var month = today.getMonth();
+	  var monArray = [0,"JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+	  var week = [0,"MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"]
+	  var time = [0,1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12]
+	  // add a zero in front of numbers<10
+	  var clock = document.getElementById('clock')
+	   var date = document.getElementById('date')
+
+	  clock.innerText = time[h] + ":" + m + ":" + s.toString();
+
+
+	  date.innerText = week[day] +" / "+monArray[month+1] +" / "+ date1 +" / "+year;
+	 var t = setTimeout(function() {
+	    startTime()
+	  }, 500);
+	}
+  //check multi-upload functionality//
+class ChangeInputBoxDisplay extends React.Component{
+	constructor(props){
+		super(props)
+			this.saveInformationUnitToArray = this.saveInformationUnitToArray.bind(this)
+			this.displayNextTask = this.displayNextTask.bind(this)
+			this.resetInformationList = this.resetInformationList.bind(this)
+			this.changeTask = this.changeTask.bind(this)
+			this.state = {number: 0, savedInfo: false, refresh: false, savedNumber: 'null'}
+		}
+
+	taskName = "task"
+	currentNumber = 0
+	currentTask = ""
+	infoArray = ["testValue"]
+	saveObjInfo = {}
+	infoObjs = {info:[]}
+	uid = ""
+	accountId = 'starting'
+
+	resetTable = (newLoad) => {
+		this.setState({
+			number:0
+		});
+			if(newLoad == false){
+				this.emptyLoadedIndicator = true
+				this.setState({
+					refresh: true
+				});
+			}
+			if(newLoad == true){
+				this.emptyLoadedIndicator = false
+			}
+		this.reset = true;
+		this.currentNumber=0;
+		this.accountId = 'starting';
+		this.infoArray=["testValue"];
+		if(!this.props.loadedAccountInformation){
+			this.saveObjInfo+=this.infoObjs
+			this.infoObjs = {info:[]}
+		}
+		if(this.props.loadedAccountInformation){
+			this.saverArray = this.props.loadedAccountInformation.data
+		}
+		if(this.props.loadedAccountInformation){
+			this.saveObjInfo+=this.props.loadedAccountInformation
+			while(this.props.loadedAccountInformation > 0){
+				this.props.loadedAccountInformation = []
+			}
+			ReactDOM.render(<CycleList clickedId={this.props.clickedId}   travellingAccountId={this.props.travellingAccountId}  loadedAccountInformation={this.saverArray} reset={this.reset} emptyLoadedIndicator={this.emptyLoadedIndicator}/>, document.getElementById("app"));
+			this.infoObjs = {info:[]}
+		}
+		if(this.props.loadedAccountInformation){
+		if(this.props.loadedAccountInformation.data){
+			this.saveObjInfo+=this.props.loadedAccountInformation
+			while(this.props.loadedAccountInformation.data.length > 0){
+				this.props.loadedAccountInformation.data = []
+			}
+			ReactDOM.render(<CycleList   clickedId={this.props.clickedId} travellingAccountId={this.props.travellingAccountId}  loadedAccountInformation={this.saverArray} reset={this.reset} emptyLoadedIndicator={this.emptyLoadedIndicator}/>, document.getElementById("app"));
+			this.infoObjs = {info:[]}
+		}
+		}
+		if(this.props.loadedAccountInformation){
+		if(this.props.loadedAccountInformation.data){
+		if(this.props.loadedAccountInformation.data.info){
+			this.saveObjInfo+=this.props.loadedAccountInformation
+			while(this.props.loadedAccountInformation.data.info.length > 0){
+				this.props.loadedAccountInformation.data = []
+			}
+			ReactDOM.render(<CycleList  clickedId={this.props.clickedId}  travellingAccountId={this.props.travellingAccountId}   accountId={this.accountId}  loadedAccountInformation={this.saverArray} reset={this.reset} emptyLoadedIndicator={this.emptyLoadedIndicator}/>, document.getElementById("app"));
+			this.infoObjs = {info:[]}
+		}
+	}
+	}
+		this.table = document.getElementById("tableBody")
+		document.getElementById("task").value = ""
+		document.getElementById("response").value = ""
+		document.getElementById("response").focus()
+		document.getElementById("response").select()
+		this.tableBody = document.getElementById("tableBody");
+		newLoad = 'null'
+	}
+	checkNum = 0
+	colorCounter = 'null'
+	manageInformationLifeCycle = (element) => {
+	this.stabilizer()
+	this.reset = false;
+	/*"currentNumber" gets reset after 7. "this.state.number" is always incremented*/
+	if(!this.props.loadedTitles){
+		this.titles = this.saverArray
+	}
+			if(element.keyCode == 13){
+				if(!this.props.loadedTitles){
+					if(this.state.number == 0){
+						this.uid = element.target.value
+						this.displayNextTask(this.titles)
+						this.currentNumber++
+					}
+					if(this.state.number != 0){
+						if(this.currentNumber == 7){
+							this.storeCompletedInformation()
+							this.resetInformationList()
+						}
+						if(this.currentNumber < 7){
+							this.saveInformationUnitToArray(element)
+							this.displayNextTask(this.titles)
+							this.currentNumber++
+						}
+					}
+				}
+			if(this.props.loadedTitles){
+				this.loadedTitles = this.props.loadedTitles
+					if(this.state.number == 0){
+						this.uid = element.target.value
+						this.displayNextTask(this.loadedTitles)
+						this.currentNumber++
+					}
+					if(this.state.number != 0){
+						if(this.currentNumber == this.props.loadedTitles.length){
+							this.saveInformationUnitToArray(element)
+							this.storeCompletedLoadedInformation()
+							this.resetInformationList()
+							this.displayNextTask(this.loadedTitles)
+							this.checkNum++
+						}
+						if(this.currentNumber < this.props.loadedTitles.length){
+							if(this.currentNumber > 0){
+								if(this.taskCheck == false){
+									this.saveInformationUnitToArray(element)
+									this.displayNextTask(this.loadedTitles)
+									this.currentNumber++
+								}
+								if(this.taskCheck == true){
+									this.saveInformationUnitToArray(element)
+									this.displayNextTask(this.loadedTitles)
+									this.taskCheck = false
+								}
+							}
+							if(this.currentNumber == 0){
+								this.displayNextTask(this.loadedTitles)
+								this.currentNumber++
+							}
+						}
+					}
+				}
+				this.setState({
+					number: this.state.number+1
+				});
+				this.taskName = document.getElementById("task").value
+			}
+		}
+	taskCheck = false
+		setToMatch = (numberToMatch) => {
+			document.getElementById("task").value =  (this.props.loadedTitles) ? this.props.loadedTitles[0] : this.props.titles[0]
+			this.titleToPlace =  (this.props.loadedTitles) ? this.props.loadedTitles[0] : this.props.titles[0]
+			this.dynamicData =  this.dataDeterminer()
+			document.getElementById("response").placeholder = this.dynamicData[numberToMatch][this.titleToPlace]
+		}
+	dataDeterminer = () => {
+
+	this.determinedData = []
+
+	if(!this.props.loadedAccountInformation){
+		this.determinedData = this.accountInfo
+	}
+	if(this.props.loadedAccountInformation){
+		this.determinedData = this.props.loadedAccountInformation
+	}
+		if(this.props.loadedAccountInformation){
+			if(this.props.loadedAccountInformation.data){
+				this.determinedData = this.props.loadedAccountInformation.data
+			}
+		}
+		if(this.props.loadedAccountInformation){
+			if(this.props.loadedAccountInformation.data){
+				if(this.props.loadedAccountInformation.data.info){
+					this.determinedData = this.props.loadedAccountInformation.data.info
+				}
+				if(!this.props.loadedAccountInformation.data.info){
+					this.determinedData = this.props.loadedAccountInformation.data
+				}
+			}
+		}
+		if(!this.determinedData){
+			this.determinedData = this.infoObjs.info
+		}
+	return this.determinedData
+}
+	resetInformationList = () => {
+		this.currentNumber = 0
+		this.infoArray = []
+		if(this.accountId == this.dataToLoad.length-1){
+			this.accountId = 0
+			this.colorCounter = 0
+			this.resetIndicator = true
+		}
+	}
+	saveInformationUnitToArray = (element) => {
+		this.typedValue = element.target.value
+		if(element.target.value == ""){
+			this.typedValue = element.target.attributes.placeholder.nodeValue
+		}
+		if(this.infoArray[0] !== "testValue"){
+			this.infoArray.push(this.typedValue)
+		}
+		if(this.infoArray[0] === "testValue"){
+			this.infoArray[0] = this.typedValue
+		}
+	}
+	storeCompletedInformation () {
+		this.infoObj = {"accountId":"","accountNumber":"","assignedDate":"","nbrOfCallsMade":"","datesLoanCalled":"","advisedOfEscrowChange":"","escrowChangeStatus":"","phoneNumberCalled":""}
+									this.cycleStarter = true
+		this.findAccountByColor()
+		this.infoObj.accountId=this.accountId
+		this.infoObj.accountNumber=this.infoArray[1]
+		this.infoObj.assignedDate=this.infoArray[2]
+		this.infoObj.nbrOfCallsMade=this.infoArray[3]
+		this.infoObj.datesLoanCalled=this.infoArray[4]
+		this.infoObj.advisedOfEscrowChange=this.infoArray[5]
+		this.infoObj.escrowChangeStatus=this.infoArray[6]
+		this.infoObj.phoneNumberCalled=this.infoArray[7]
+		this.infoObjs.info.push(this.infoObj)
+	}
+
+	storeCompletedLoadedInformation () {
+		if(this.props.loadedAccountInformation){
+			this.dataToLoad = this.props.loadedAccountInformation
+		}
+		if(this.props.loadedAccountInformation.data){
+			this.dataToLoad = this.props.loadedAccountInformation.data
+		}
+		if(this.props.loadedAccountInformation.data){
+			if(this.props.loadedAccountInformation.data.info){
+				this.dataToLoad = this.props.loadedAccountInformation.data.info
+			}
+		}
+		for(this.arrayValueCycler=0;this.arrayValueCycler<this.infoArray.length;this.arrayValueCycler++){
+			this.titleName=this.props.loadedTitles[this.arrayValueCycler]
+			this.dataToLoad[this.accountId][this.titleName] = this.infoArray[this.arrayValueCycler]
+		}
+			this.infoObjs.info = this.dataToLoad
+			this.cycleStarter = true
+			this.accountId++
+		}
+	stabilizer(){
+		console.log("entering Stabilizer: " + this.accountId)
+		if(this.accountId !== this.colorCounter || this.colorCounter == 'null'){
+			this.table = document.getElementById("tableTitles")
+					for(this.u=0;this.u<this.table.children[1].children.length;this.u++){
+						this.elementToTarget = this.table.children[1].children[this.u]
+						this.red = this.elementToTarget.style.background
+							if(this.red == "radial-gradient(red, yellow)" && this.u!==this.accountId){
+								if(this.checkNum !== this.elementToTarget.id){
+									this.accountId = this.u
+									this.colorCounter = this.accountId
+									this.currentNumber = 0
+									this.checkNum = this.elementToTarget.id
+		console.log("exiting Stabilizer: " + this.accountId)
+								}
+							}
+						}
+					}
+				}
+	increaser(){
+		console.log("entering Increaser: " + this.accountId)
+		if(this.accountId == this.colorCounter || this.colorCounter !== 'null'){
+			this.table = document.getElementById("tableTitles")
+					for(this.u=0;this.u<this.table.children[1].children.length;this.u++){
+						this.elementToTarget = this.table.children[1].children[this.u]
+						this.red = this.elementToTarget.style.background
+							if(this.red == "red"){
+									this.accountId = this.u
+									this.colorCounter = this.accountId
+									this.currentNumber = 0
+									this.checkNum = this.elementToTarget.id
+									this.accountId++
+		console.log("exiting Increaser: " + this.accountId)
+								}
+							}
+						}
+					}
+	storeIndividualEditedInformation (titles, accounts, accountInformationFields, accountId) {
+		if(titles){
+			for(this.arrayValueCycler=0;this.arrayValueCycler<titles.length;this.arrayValueCycler++){
+				this.titleName=titles[this.arrayValueCycler]
+				accounts[accountId][this.titleName] = accountInformationFields[this.arrayValueCycler]
+			}
+		}
+			this.infoObjs.info = accounts
+		}
+
+	accountResponseValue = (accountId, taskName, responseName) => {
+		if(!this.props.loadedAccountInformation){
+			this.dataToLoad = this.accountInfo
+		}
+	if(this.props.loadedAccountInformation){
+		this.dataToLoad = this.props.loadedAccountInformation
+	}
+		if(this.props.loadedAccountInformation){
+			if(this.props.loadedAccountInformation.data){
+				this.dataToLoad = this.props.loadedAccountInformation.data
+			}
+		}
+
+		if(this.props.loadedAccountInformation){
+			if(this.props.loadedAccountInformation.data){
+				if(this.props.loadedAccountInformation.data.info){
+					this.dataToLoad = this.props.loadedAccountInformation.data.info
+				}
+			}
+		}
+		/*if(responseName === this.dataToLoad[accountId][taskName]){*/
+			this.infoToReturn = this.dataToLoad[accountId][taskName]
+		/*}*/
+		/*if(responseName !== this.dataToLoad[accountId][taskName]){
+			this.infoToReturn = this.props.travellingAccounts[accountId][taskName]
+		/*}*/
+		return this.infoToReturn
+	}
+
+	displayNextTask = (loadedTitles) => {
+	document.getElementById("response").value = ""
+	document.getElementById("task").value = this.changeTask(this.currentNumber, loadedTitles)
+	document.getElementById("response").placeholder  = this.accountResponseValue(this.accountId, document.getElementById("task").value,document.getElementById("response").placeholder) }
+	changeTask = (numberToSend, loadedTitles) => { return this.props.changeListItem(numberToSend, loadedTitles)}
+	savedClickedId = 'null'
+	savedAccountId= 'null'
+	clickedNumber = 0
+	loadCheck=false
+	saveTravellingValue
+	cycleStarter = false
+	saveInitialAccounts = []
+	componentWillMount() {
+      if(this.props.tableGeneratorState == true){
+		this.props.resetClickState(this.props.accountId)
+		this.accountId = this.props.accountId
+		this.setState({
+					savedNumber:this.props.accountId
+				});
+		this.travellingAccountId = this.state.savedNumber
+		this.storeIndividualEditedInformation (this.props.titles, this.props.allAccounts, this.props.accountInformationFields, this.props.accountId)
+		this.setToMatch(this.accountId)
+		this.travellingAccounts = this.props.allAccounts
+	  }
+   }
+   componentDidMount() {
+   }
+   componentWillReceiveProps(newProps) {
+   }
+   shouldComponentUpdate(newProps, newState) {
+      return true;
+   }
+   componentWillUpdate(nextProps, nextState) {
+   }
+   componentDidUpdate(prevProps, prevState) {
+   }
+   componentWillUnmount() {
+   }
+	render(){
+		if(this.loadedTitles){
+			if(this.taskName == this.loadedTitles[0] && this.cycleStarter == true){
+				this.increaser()
+				this.cycleStarter = false
+			}
+		}
+		if(this.props.travellingAccounts){
+			this.infoObjs.info = this.props.travellingAccounts
+			if(this.infoObjs.info !== this.props.loadedAccountInformation.data){
+				this.infoObjs.info = this.props.loadedAccountInformation.data
+			}
+		}
+		if(this.state.refresh == false){
+			console.log(this.accountId)
+					return(
+						<div>
+							<FileButton travellingAccounts={this.travellingAccounts}  clickedId={this.props.clickedId}  travellingAccountId={this.travellingAccountId}  setIncomingAccountId={this.props.setIncomingAccountId}  loadCheck={this.loadCheck} setToMatch={this.setToMatch} taskName={this.taskName}  accountId={this.accountId} resetTable={this.resetTable} loadedTitles={this.props.loadedTitles} emptyLoadedIndicator={this.props.emptyLoadedIndicator} accountInformation={this.infoObjs} stateNumber={this.state.number-1}/>
+							<DisplayInputBoxes travellingAccounts={this.travellingAccounts} clickedId={this.props.clickedId}  travellingAccountId={this.travellingAccountId} setIncomingAccountId={this.props.setIncomingAccountId}  loadCheck={this.loadCheck} setToMatch={this.setToMatch} taskName={this.taskName} accountId={this.accountId}  loadedTitles={this.props.loadedTitles} resetTable={this.resetTable} setting={this.state.number} manageInformationLifeCycle = {this.manageInformationLifeCycle}/>
+						</div>
+					);
+				}
+			if(this.state.refresh == true){
+				window.location.reload()
+			}
+		}
+	}
+
+
+
+
+
+class FileButton extends React.Component{
+	constructor(props){
+		super(props)
+		this.state={fileLoad: false, fileEvent: 'null'}
+		this.changeStateTrue = this.changeStateTrue.bind(this)
+		this.changeStateFalse = this.changeStateFalse.bind(this)
+	}
+	changeStateTrue(evt){
+		this.newLoad = true
+		this.props.resetTable(this.newLoad)
+		if(evt.target.files.length>0){
+		this.oldFile = evt.target.files[0]
+			this.setState({
+				fileLoad: true,
+				fileEvent: evt.target.files[0]
+			});
+		}
+		if(evt.target.files.length==0){
+			this.setState({
+				fileLoad: true,
+				fileEvent: this.oldFile
+			});
+
+		}
+	}
+	componentWillReceiveProps(nextProps){
+		if(nextProps.emptyLoadedIndicator){
+			this.changeStateFalse()
+		}
+		if(nextProps.accountInformation.info){
+			this.changeStateTruthy()
+		}
+	}
+	changeStateTruthy(){
+		this.setState({
+			fileLoad: true
+		});
+	}
+	changeStateFalse(){
+		this.setState({
+			fileLoad: false
+		});
+	}
+	fileChooseStyle={
+			position: "fixed",
+			top: "27%",
+			left: "40%",
+			width: "20%",
+			textAlign: "center",
+			height: 32,
+			textAlign: "center",
+			borderStyle: "solid",
+			borderWidth: "0px 1px 5px 1px",
+			borderColor: "white",
+			background: "linear-gradient(#ffffff,#000000)",
+			color: "black"
+		}
+
+
+
+
+		tableHeaderStyles={
+			position: "relative",
+			top: 100,
+			width: "100%",
+			textAlign: "center",
+			borderStyle: "solid",
+			background: "radial-gradient(#000000,#ffffff)"
+	}
+	responseStyle={
+			position: "fixed",
+			top: "17.5%",
+			width: "50%",
+			background: "radial-gradient(#ffffff,#000000)",
+			right: 0,
+			opacity: "0.5",
+			textAlign: "center",
+			fontSize: "40px",
+			color: "black",
+			borderRadius: 25,
+			borderStyle: "solid",
+			borderWidth: "2px 5px 5px 5px"
+		}
+		render(){
+			if(!this.props.savedInfo){
+				return(
+					<div style={this.tableHeaderStyles}>
+						<input style={this.fileChooseStyle} onChange={this.changeStateTrue} id="csv-file" type="file" name="files"/>
+						<div id="fileJob"></div>
+						<CreateTableHeader travellingAccounts={this.props.travellingAccounts} clickedId={this.props.clickedId}  travellingAccountId={this.props.travellingAccountId}  setIncomingAccountId={this.props.setIncomingAccountId}  loadCheck={this.props.loadCheck}  setToMatch={this.props.setToMatch} taskName={this.props.taskName}  accountId={this.props.accountId}  initialSave={this.props.initialSave}  loadedTitles={this.props.loadedTitles} emptyLoadedIndicator={this.props.emptyLoadedIndicator} fileLoad={this.state.fileLoad} fileEvent={this.state.fileEvent} accountInformation={this.props.accountInformation} stateNumber={this.props.stateNumber} />
+					</div>
+				);
+			}
+			if(this.props.savedInfo == true){
+				return <CreateTableHeader travellingAccounts={this.props.travellingAccounts} clickedId={this.props.clickedId}  travellingAccountId={this.props.travellingAccountId}  setIncomingAccountId={this.props.setIncomingAccountId}  loadCheck={this.props.loadCheck} setToMatch={this.props.setToMatch} taskName={this.props.taskName}  accountId={this.props.accountId} initialSave={this.props.initialSave} loadedTitles={this.props.loadedTitles} emptyLoadedIndicator={this.props.emptyLoadedIndicator} fileLoad={true} fileEvent={this.state.fileEvent} fileSave={true} accountInformation={this.props.accountInformation} stateNumber={this.props.stateNumber} />
+			}
+		}
+	}
+
+	class DisplayInputBoxes extends React.Component{
+		constructor(props){
+			super(props)
+			this.resetTableButton = this.resetTableButton.bind(this)
+			this.askName = this.askName.bind(this)
+			this.state = {newName: false}
+		}
+		focusFunction(){
+				document.getElementById("response").focus()
+		}
+		resetTableButton(){
+			this.props.resetTable(false)
+		}
+		askName(){
+			this.getName = prompt("What would you like to call your spreadsheet?");
+			if (this.getName != this.null) {
+				if(this.getName === this.spreadSheetName){
+					this.setState({
+						newName: false
+					});
+				}
+				if(this.getName !== this.spreadSheetName){
+					this.setState({
+						newName: true
+					});
+				}
+			   this.spreadSheetName = this.getName+".csv";
+			}
+		}
+		taskStyle={
+			position: "fixed",
+			top: "17.5%",
+			width: "50%",
+			background: "radial-gradient(#000000,#ffffff)",
+			opacity: "0.5",
+			textAlign: "center",
+			fontSize: "40px",
+			color: "white",
+			borderRadius: "20px 0px 0px 20px",
+			borderStyle: "solid",
+			borderWidth: "5px 5px 5px 5px"
+		}
+		responseStyle={
+			position: "fixed",
+			top: "17.5%",
+			width: "50%",
+			background: "radial-gradient(#ffffff,#000000)",
+			right: 0,
+			opacity: "0.5",
+			textAlign: "center",
+			fontSize: "40px",
+			color: "black",
+			borderRadius: "0px 20px 20px 0px",
+			borderStyle: "solid",
+			borderWidth: "5px 5px 5px 5px"
+		}
+		resetStyle={
+			position: "fixed",
+			top: "27%",
+			left: "20%",
+			width: "20%",
+			height: 32,
+			textAlign: "center",
+			borderStyle: "solid",
+			borderRadius: "0px 0px 0px 25px",
+			borderWidth: "0px 1px 5px 5px",
+			borderColor: "white",
+			background: "linear-gradient(#ffffff,#000000)",
+			color: "white"
+		}
+
+		render(){
+		if(this.state.newName == false || !this.state.newName){
+			return (
+				<div>
+					<input style={this.taskStyle} id="task" ref="taskInput" placeholder="User ID"/>
+					<input style={this.responseStyle} id="response" ref="respInput" onKeyDown={this.props.manageInformationLifeCycle}/>
+					<input style={this.resetStyle}  id="reset" type="button" onClick={this.resetTableButton} value="reset-table"/>
+				</div>
+				);
+			}
+		if(this.state.newName == true){
+			return (
+				<div>
+					<input style={this.taskStyle} id="task" ref="taskInput" placeholder="User ID"/>
+					<input style={this.responseStyle} id="response" ref="respInput" onKeyDown={this.props.manageInformationLifeCycle}/>
+					<input style={this.resetStyle} id="reset" type="button" onClick={this.resetTableButton} value="reset-table"/>
+				</div>
+			);
+		}
+	}
+}
+
+class DownloadTable extends React.Component{
+	constructor(props){
+		super(props)
+
+	}
+fileDownload = 0
+exp(filename){
+	this.fileDownload++
+	 this.mainInfo = [];
+		this.allRow = document.querySelectorAll("tr");
+		for(this.q=0;this.q<this.allRow.length;this.q++){
+			this.singleRow = [];
+			this.lengthOfColumns = this.allRow[this.q].querySelectorAll("td");
+			for (this.h=1;this.h<this.lengthOfColumns.length; this.h++){
+				this.singleRow.push(this.lengthOfColumns[this.h].innerText)
+			}
+			this.mainInfo.push(this.singleRow.join(","));
+			this.mainInfo[0] = this.props.loadedTitles
+		}
+			this.downloadCSV(this.mainInfo.join("\n"), this.props.fileName);
+		}
+
+downloadCSV(csv, filename){
+	this.csvFileSpace;
+	this.downloadLink;
+	this.csvFileSpace = new Blob([csv], {type:"text/csv"});
+	this.downloadLink = document.createElement("a");
+	this.downloadLink.download = filename;
+	this.downloadLink.href = window.URL.createObjectURL(this.csvFileSpace);
+	this.downloadLink.style.display = "none";
+	document.body.appendChild(this.downloadLink);
+	this.downloadLink.click();
+	}
+
+		render(){
+			if(this.props.fileName){
+				this.exp(this.props.fileName)
+				return <p>{this.props.fileName}</p>
+			}
+		}
+	}
+
+
+
+
+
+
+	class CreateTableHeader extends React.Component{
+		constructor(props){
+			super(props)
+				this.setLoadedTitles = this.setLoadedTitles.bind(this)
+			}
+		setLoadedTitles(){
+		if(this.props.loadedTitles){
+			this.titles = this.props.loadedTitles
+		}
+			this.loadedTitlesToSet = ["key"]
+			this.loadedTitleKey = 0
+			if(this.titles){
+				for(this.title = 0; this.title < this.titles.length; this.title++){
+					this.loadedTitleKey++
+					this.loadedTitlesToSet.push(<th key={"loadedTitle"+this.loadedTitleKey}>{this.titles[this.title]}</th>)
+				}
+			}
+				return this.loadedTitlesToSet
+			}
+	tableHeaderStyles={
+		top: "30%",
+		width: "100%",
+		textAlign: "center",
+		background: "orange",
+		opacity: "0.7"
+	}
+	tableHeaderNamesStyles={
+		width: "100%",
+		textAlign: "center",
+		background: "orange"
+	}
+
+	titleStyles={
+		background: "linear-gradient(grey, white)",
+		width: "100%",
+		textAlign: "center"
+	}
+
+	titleStyle={
+		background: "linear-gradient(grey, white)",
+		width: "100%",
+		textAlign: "center",
+		fontSize: 25
+	}
+
+	render(){
+		if(this.props.fileLoad == false || typeof this.props.fileLoad === 'undefined'){
+				return  (
+					<table style={this.titleStyles} class="table" id="tableTitles">
+						<thead style={this.titleStyles}>
+							<tr>
+								<th>Key</th>
+								<th>Field1</th>
+								<th>Field2</th>
+								<th>Field3</th>
+								<th>Field4</th>
+								<th>Field5</th>
+								<th>Field6</th>
+								<th>Field7</th>
+							</tr>
+							</thead>
+							<CreateTableBody travellingAccounts={this.props.travellingAccounts} clickedId={this.props.clickedId}  travellingAccountId={this.props.travellingAccountId}  setIncomingAccountId={this.props.setIncomingAccountId}  loadCheck={this.props.loadCheck} setToMatch={this.props.setToMatch} taskName={this.props.taskName} setLoadedTitles={this.setLoadedTitles} stateNumber={this.props.stateNumber} accountInformation={this.props.accountInformation} stateNumber={this.props.stateNumber}/>
+						</table>
+						);
+					}
+
+				if(this.props.fileLoad == true){
+					this.setLoadedTitles()
+					if(!this.props.fileSave){
+						return  (
+							<table style={this.titleStyles} class="table" id="tableTitles">
+								<thead style={this.titleStyle}>
+									<tr>
+										{this.loadedTitlesToSet}
+									</tr>
+									</thead>
+									<CreateLoadedTableBody travellingAccounts={this.props.travellingAccounts} clickedId={this.props.clickedId}  travellingAccountId={this.props.travellingAccountId}  setIncomingAccountId={this.props.setIncomingAccountId}  loadCheck={this.props.loadCheck} setToMatch={this.props.setToMatch} taskName={this.props.taskName} accountId={this.props.accountId} setLoadedTitles={this.setLoadedTitles} initialSave={this.props.initialSave}  modifiedLoadedAccountInformation={this.props.accountInformation} loadedTitles={this.props.loadedTitles} emptyLoadedIndicator={this.props.emptyLoadedIndicator} fileEvent={this.props.fileEvent} load={this.props.fileLoad} loadedAccountInformation={this.props.loadedAccountInformation} accountInformation={this.props.accountInformation} stateNumber={this.props.stateNumber}/>
+								</table>
+								);
+							}
+						if(this.props.fileSave){
+							this.setLoadedTitles()
+								return  (
+											<CreateLoadedTableBody travellingAccounts={this.props.travellingAccounts} clickedId={this.props.clickedId}  travellingAccountId={this.props.travellingAccountId}  setIncomingAccountId={this.props.setIncomingAccountId}  loadCheck={this.props.loadCheck} setToMatch={this.props.setToMatch} taskName={this.props.taskName} accountId={this.props.accountId} setLoadedTitles={this.setLoadedTitles} initialSave={this.props.initialSave}  modifiedLoadedAccountInformation={this.props.accountInformation} loadedTitles={this.props.loadedTitles} emptyLoadedIndicator={this.props.emptyLoadedIndicator} fileEvent={this.props.fileEvent} load={this.props.fileLoad} loadedAccountInformation={this.props.loadedAccountInformation} accountInformation={this.props.accountInformation} stateNumber={this.props.stateNumber}/>
+										);
+									}
+								}
+							}
+						}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class CreateLoadedTableBody extends React.Component{
+		constructor(props){
+			super(props)
+			this.addLoadedInformation = this.addLoadedInformation.bind(this)
+			this.state = {individualClick: false}
+		}
+		rowStyle={
+			background:"yellow",
+			color: "black"
+		}
+		selectedAccount={
+			background: "radial-gradient(red, yellow)",
+			height: 50,
+			fontSize: 25
+		}
+		expandHoveredAccount={
+			height: 25
+		}
+		didFileLoad = false
+		loadedInformation = []
+		loadedInformationToStore = ""
+		loadedKeyNumber = 0
+		i = 0;
+
+	loadFile(evt) {
+		this.file = evt
+		Papa.parse(this.file, {
+			header: true,
+			dynamicTyping: true,
+
+			complete: function(results) {
+				if(this.props.modifiedLoadedAccountInformation.info.length == 0){
+
+					this.loadedAccountInformation = results;
+					this.addLoadedInformation(this.loadedAccountInformation)
+					this.loadedTitles = this.storeNewTitles()
+					if(!this.props.travellingAccounts){
+						if(this.dataToLoad){
+							if(this.dataToLoad.length > 0){
+								this.travellingAccounts = this.dataToLoad
+							}
+						}
+					}
+					if(this.props.travellingAccounts){
+						this.travellingAccounts = this.props.travellingAccounts
+					}
+					ReactDOM.render(<CycleList travellingAccounts={this.travellingAccounts} clickedId={this.props.clickedId}  travellingAccountId={this.props.travellingAccountId}  setIncomingAccountId={this.props.setIncomingAccountId}  loadCheck={this.props.loadCheck}  setToMatch={this.props.setToMatch} taskName={this.props.taskName} loadedTitles={this.loadedTitles} loadedAccountInformation={this.loadedAccountInformation}/>, document.getElementById("app"));
+					this.currentFile = this.fileToLoad
+				}
+			}.bind(this)
+
+		});
+			this.didFileLoad = true
+	  }
+
+	resetLoadedInformationArray = () =>{this.information = []}
+clickedId='null'
+	addLoadedInformation(loadedAccountInformation){
+				if(this.clickedId == 'null' && this.props.accountId !==  'starting'){
+					this.clickedId = this.props.accountId
+					if(this.clickedId == this.dataToLoad.length - 1){
+						this.clickedId = 0
+					}
+				}
+				if(this.clickedId == 'null' && this.props.accountId ===  'starting'){
+					this.clickedId = this.clickedIdSaver
+				}
+		this.loadedInformation=[]
+		this.loadedInformation2 = []
+		if(this.props.modifiedLoadedAccountInformation.info.length > 0){
+			this.dataToPlace = this.props.modifiedLoadedAccountInformation.info;
+		}
+		if(this.props.modifiedLoadedAccountInformation.info.length == 0){
+			if(this.props.accountId !== 'starting'){
+				this.dataToPlace = this.loadedAccountInformation.data;
+			}
+		}
+		if(!this.dataToPlace){
+			this.dataToPlace = this.loadedAccountInformation.data;
+		}
+		for(let ii=0;ii<this.dataToPlace.length;ii++){
+			this.loadedKeyName = "loadedAccount"+(ii+1)
+			if(this.props.loadedTitles){
+				for(let iii=0;iii<this.props.loadedTitles.length;iii++){
+					this.loadedTitleName = this.props.loadedTitles[iii]
+					this.loadedInformation2.push(
+							<td>{this.dataToPlace[ii][this.loadedTitleName]}</td>
+						)
+					}
+				if(ii === this.clickedId){
+					console.log("account number turning red: " + this.clickedId)
+					console.log("full account information turning red: " + this.dataToPlace[this.clickedId])
+					this.loadedInformation.push(
+						<tr style={this.selectedAccount} onClick={this.changeStateForClick} key={this.loadedKeyName} id={this.loadedKeyName}>
+							<td>{ii+1}</td>
+							{this.loadedInformation2}
+						</tr>
+						)
+					}
+				if(ii !== this.clickedId){
+					this.loadedInformation.push(
+						<tr style={this.rowStyle} onClick={this.changeStateForClick} key={this.loadedKeyName} id={this.loadedKeyName}>
+							<td>{ii+1}</td>
+							{this.loadedInformation2}
+						</tr>
+						)
+					}
+
+					this.loadedInformation2 = []
+				this.loadedKeyName = ""
+			}
+		}
+		this.clickedId = 'null'
+	}
+
+	changeStateForClick = (id) => {
+		this.id = id.target.parentElement.id
+		this.setState({
+			individualClick: true
+		});
+	}
+		resetClickState = (clickedId) =>{
+			this.clickedId = clickedId
+			this.clickedIdSaver = clickedId
+				this.setState({
+					individualClick: false
+				});
+			}
+		storeNewTitles = () =>{
+			this.loadedInformationTitles=[]
+				for(this.titles in this.loadedAccountInformation.data[0]){
+					if(this.titles !== ""){
+						this.loadedInformationTitles.push(this.titles)
+					}
+				}
+				return this.loadedInformationTitles
+		}
+
+		componentWillReceiveProps(nextProps){
+			if(nextProps.fileEvent !== this.currentFile){
+				this.resetClickState()
+			}
+			/*if(nextProps.accountId !== this.props.accountId){
+				this.props.accountId
+			}*/
+			/*
+			   componentWillMount() {
+      console.log('Component WILL MOUNT!')
+   }
+   componentDidMount() {
+      console.log('Component DID MOUNT!')
+   }
+   componentWillReceiveProps(newProps) {
+      console.log('Component WILL RECIEVE PROPS!')
+   }
+   shouldComponentUpdate(newProps, newState) {
+      return true;
+   }
+   componentWillUpdate(nextProps, nextState) {
+      console.log('Component WILL UPDATE!');
+   }
+   componentDidUpdate(prevProps, prevState) {
+      console.log('Component DID UPDATE!')
+   }
+   componentWillUnmount() {
+      console.log('Component WILL UNMOUNT!')
+   }
+			*/
+		}
+
+		tableBodyStyle={
+			width: "100%",
+			textAlign: "center"
+		}
+		render(){
+		this.fileToLoad = this.props.fileEvent
+		this.dataToLoad = this.props.modifiedLoadedAccountInformation
+		if(this.props.accountId !== 'starting'){
+			if(this.props.modifiedLoadedAccountInformation.info){
+				this.dataToLoad = this.props.modifiedLoadedAccountInformation.info
+			}
+		}
+		if(this.props.accountId === 'starting'){
+			this.dataToLoad = this.dataToPlace
+		}
+		if(this.state.individualClick == true){
+				this.initialSave = true
+				this.dataToLoad = this.loadedInformation
+				return <SingleAccountEdit travellingAccounts={this.props.travellingAccounts} clickedId={this.clickedId} tableGeneratorState={this.state.individualClick} resetClickState={this.resetClickState} travellingAccountId={this.props.travellingAccountId} accountId={this.props.accountId} setIncomingAccountId={this.props.setIncomingAccountId}   loadCheck={this.props.loadCheck} setToMatch={this.props.setToMatch} taskName={this.props.taskName} initialSave={this.initialSave} titles={this.props.loadedTitles} accounts={this.dataToLoad} allAccounts={this.dataToPlace} id={this.id}/>
+			}
+		if(this.state.individualClick == false || this.fileToLoad !== this.currentFile){
+			if(this.props.modifiedLoadedAccountInformation.info.length == 0){
+				if(!this.props.emptyLoadedIndicator){
+					this.didFileLoad = false;
+				}
+				if(this.didFileLoad == false){
+					this.loadFile(this.fileToLoad)
+					return <tbody style={this.tableBodyStyle} id="tableBody" ref="tableBody">{this.loadedInformation}</tbody>
+				}
+				if(this.didFileLoad == true){
+					return <tbody style={this.tableBodyStyle} id="tableBody" ref="tableBody">{this.loadedInformation}</tbody>
+				}
+			}
+			if(this.props.modifiedLoadedAccountInformation.info.length > 0){
+				this.addLoadedInformation(this.dataToLoad)
+					return <tbody style={this.tableBodyStyle} id="tableBody" ref="tableBody">{this.loadedInformation}</tbody>
+				}
+			}
+
+		}
+	}
+
+
+
+
+	class SingleAccountEdit extends React.Component{
+	constructor(props){
+		super(props)
+		this.detectFromId = this.detectFromId.bind(this)
+		this.createTitles = this.createTitles.bind(this)
+		this.state = {readyToSave: false, secondTimeRound: false}
+	}
+	accountId = 0;
+	detectFromId = (id) =>{
+	if(id){
+		this.accountId = parseInt(id.slice(13))
+		this.accountToEdit = this.props.accounts[this.accountId]
+		this.createTitles(this.accountId)
+		this.props.setToMatch(this.accountId-1)
+	}
+}
+	componentWillMount() {
+      console.log('Component WILL MOUNT!')
+   }
+   componentDidMount() {
+      console.log('Component DID MOUNT!')
+   }
+   componentWillReceiveProps(newProps) {
+
+	}
+   shouldComponentUpdate(newProps, newState) {
+      return true;
+   }
+   componentWillUpdate(nextProps, nextState) {
+      console.log('Component WILL UPDATE!');
+   }
+   componentDidUpdate(prevProps, prevState) {
+      console.log('Component DID UPDATE!')
+   }
+   componentWillUnmount() {
+      console.log('Component WILL UNMOUNT!')
+   }
+	numberToSend = 0
+	editableFields = []
+	editMarker = 0
+	editableStyle={
+		position: "fixed",
+		top: 300,
+		height: "100%",
+		width: "50%",
+		left: "25%"
+	}
+	editableButtons={
+		position: "fixed",
+		height: 45,
+		width: 55,
+		left: "50%",
+		borderRadius: "25%",
+		background: "radial-gradient(#ffffff,#000000)",
+		top: 500,
+		color: "black"
+	}
+	editableButtons2={
+		position: "fixed",
+		height: 45,
+		width: 60,
+		left: "40%",
+		background: "radial-gradient(#000000,#ffffff)",
+		borderRadius: "25%",
+		top: 500
+	}
+	singleEditBoxStyle = {
+		position: "fixed",
+		height: "100%",
+		top: 0,
+		width: "100%",
+		left: "20%",
+		position: "fixed",
+		textAlign: "center",
+		color: "white"
+	}
+	singleEditInputBoxStyles = {
+		position: "absolute",
+		width: "50%",
+		left: "25%",
+		textAlign: "center",
+		background: "radial-gradient(#000000,#ffffff)",
+		borderRadius: "20px 0px 0px 20px",
+		borderRadius: "25%",
+		color: "white"
+	}
+
+	createTitles = (accountId) => {
+		this.numberToSend = accountId
+		this.refName = ""
+		this.titleCounter = 0;
+		for(this.titleCounter=0;this.titleCounter<this.props.titles.length;this.titleCounter++){
+			this.title = this.props.titles[this.titleCounter]
+			this.account = this.props.accounts[accountId-1]
+			this.accountChildren = this.account.props.children[1]
+			this.accountChildrenTitle = this.accountChildren[this.titleCounter]
+			this.accountValue = this.accountChildrenTitle.props.children
+			this.refToSave = "fieldToEdit"+ this.titleCounter
+			this.refName = this.refToSave
+			this.editableFields.push(
+				<tr>
+					<tr>{this.title}</tr>
+					<td>
+						<input style={this.singleEditInputBoxStyles} ref={this.refName} id={this.refName} placeholder={this.accountValue}></input>
+					</td>
+				</tr>
+			)
+		}
+		this.editMarker++
+	}
+	saveEditsArray = []
+
+	cancelEdits = () =>{
+		for(this.saveEditsCounter=0;this.saveEditsCounter<this.props.titles.length;this.saveEditsCounter++){
+			this.refName2 = "fieldToEdit"+this.saveEditsCounter
+			this.saveEditsArray.push(document.getElementById(this.refName2).placeholder)
+		}
+		this.setState({
+				readyToSave: true,
+				secondTimeRound: false
+			});
+	}
+	//may have to create a number in the state to represent the account number that needs to be sent and change that state with this function to call the  initial component again//
+	setIncomingAccountId(accountNumberToSet){
+			this.accountId = accountNumberToSet
+}
+	saveEdits = () =>{
+		for(this.saveEditsCounter=0;this.saveEditsCounter<this.props.titles.length;this.saveEditsCounter++){
+			this.refName2 = "fieldToEdit"+this.saveEditsCounter
+		if(document.getElementById(this.refName2).value != ""){
+			this.saveEditsArray.push(document.getElementById(this.refName2).value)
+		}
+		if(document.getElementById(this.refName2).value == ""){
+			this.saveEditsArray.push(document.getElementById(this.refName2).placeholder)
+		}
+	}
+			this.setState({
+				readyToSave: true,
+				secondTimeRound: false
+			});
+	}
+
+	render(){
+		if(!this.state.readyToSave){
+			if(this.editMarker % 2 == 0){
+				this.detectFromId(this.props.id)
+			}
+			if(this.props.titles){
+				this.titles = this.props.titles
+			}
+			if(this.accountId !== this.props.accountId && (typeof this.props.accountId !== 'undefined')){
+				this.accountId = this.props.accountId
+			}
+			return (
+			<td id="singleEditBox" style={this.singleEditBoxStyle}>
+				<td style={this.editableStyle} id="accountToEdit">{this.editableFields}</td>
+				<button style={this.editableButtons} onClick={this.saveEdits}>Save</button>
+				<button style={this.editableButtons2} onClick={this.cancelEdits}>Cancel</button>
+			</td>
+			);
+		}
+		if(this.state.readyToSave){
+			if(this.state.readyToSave == true){
+				return <ChangeInputBoxDisplay travellingAccounts={this.props.travellingAccounts} clickedId={this.props.clickedId}   tableGeneratorState={this.props.tableGeneratorState} resetClickState={this.props.resetClickState}  accountWasClicked={false} travellingAccountId={this.props.travellingAccountId}  accountId={this.numberToSend-1} setIncomingAccountId={this.setIncomingAccountId} loadCheck={this.props.loadCheck} setToMatch={this.props.setToMatch} accountIdBack={this.accountId-1} taskName={this.props.taskName} initialSave={this.props.initialSave} titles={this.titles} saveValue={this.state.readyToSave} allAccounts={this.props.allAccounts} accountInformationFields={this.saveEditsArray} />
+			}
+		}
+	}
+}
+
+
+
+
+class NewTable extends React.Component{
+	constructor(props){
+				super(props)
+			}
+	render(){
+		return (
+					<tr>
+						<td></td>
+					</tr>
+				);
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
+	class CreateTableBody extends React.Component{
+		constructor(props){
+			super(props)
+		}
+
+		information = []
+		informationToStore = ""
+		keyNumber = 0
+		i = 0;
+
+		resetInformationArray = () =>{this.information = []}
+		addInformation = () => {
+			this.information=[]
+				for(let i=0;i<this.props.accountInformation.info.length;i++){
+					this.keyName = "account"+(i+1)
+					this.information.push(
+						<tr key={this.keyName} id={this.keyName}>
+							<td>{this.props.accountInformation.info[i].accountId}</td>
+							<td>{this.props.accountInformation.info[i].accountNumber}</td>
+							<td>{this.props.accountInformation.info[i].assignedDate}</td>
+							<td>{this.props.accountInformation.info[i].nbrOfCallsMade}</td>
+							<td>{this.props.accountInformation.info[i].datesLoanCalled}</td>
+							<td>{this.props.accountInformation.info[i].advisedOfEscrowChange}</td>
+							<td>{this.props.accountInformation.info[i].escrowChangeStatus}</td>
+							<td>{this.props.accountInformation.info[i].phoneNumberCalled}</td>
+						</tr>
+						)
+					}
+				this.keyName = ""
+			}
+
+		render(){
+			if(this.props.stateNumber == -1){
+				this.resetInformationArray()
+					return (
+						<tbody id="tableBody" ref="tableBody">
+							{this.information}
+						</tbody>
+					);
+				}
+			if(this.props.stateNumber != -1){
+				if(this.props.stateNumber != 0){
+					if(this.props.stateNumber % 7 == 0){
+						this.addInformation()
+							return (
+								<tbody id="tableBody" ref="tableBody">
+									{this.information}
+								</tbody>
+							);
+						}
+						if(this.props.stateNumber % 7 != 0){
+							return (
+								<tbody id="tableBody" ref="tableBody">
+									{this.information}
+								</tbody>
+							);
+						}
+					}
+					if(this.props.stateNumber == 0){
+						return (
+							<tbody id="tableBody" ref="tableBody">
+								{this.information}
+							</tbody>
+						);
+					}
+				}
+			}
+		}
+
+
+
+class CycleList extends React.Component{
+	constructor(props){
+		super(props)
+			this.listItemsCycler = this.listItemsCycler.bind(this);
+		}
+		accountInfo =[]
+ listItems = ["Key","Field1","Field2","Field3","Field4","Field5","Field6","Field7"]
+	listItemsCycler(incomingNumber, loadedTitles){
+	/*if(!loadedTitles){
+			loadedTitles = this.titles
+		}
+	if(!incomingNumber){
+		incomingNumber = 0
+	}*/
+		if(!loadedTitles){
+			if(incomingNumber <= 6){
+				return this.listItems[incomingNumber];
+			}
+			else{
+				return this.listItems[0]
+			}
+		}
+		if(loadedTitles){
+			if(incomingNumber <= loadedTitles.length){
+				return loadedTitles[incomingNumber];
+			}
+			else{
+				return loadedTitles[0]
+			}
+		}
+	}
+	componentWillMount() {
+      console.log('Component WILL MOUNT!')
+   }
+   componentDidMount() {
+      console.log('Component DID MOUNT!')
+   }
+   componentWillReceiveProps(newProps) {
+
+	}
+   shouldComponentUpdate(newProps, newState) {
+      return true;
+   }
+   componentWillUpdate(nextProps, nextState) {
+      console.log('Component WILL UPDATE!');
+   }
+   componentDidUpdate(prevProps, prevState) {
+      console.log('Component DID UPDATE!')
+   }
+   componentWillUnmount() {
+      console.log('Component WILL UNMOUNT!')
+   }
+	render(){
+		if(this.props.loadedTitles){
+			this.titles = this.props.loadedTitles
+		}
+		if(this.props.loadedAccountInformation){
+			this.accountInfo = this.props.loadedAccountInformation
+		}
+		if(this.props.loadedAccountInformation){
+			return (
+				<ChangeInputBoxDisplay travellingAccounts={this.props.travellingAccounts} clickedId={this.props.clickedId}  travellingAccountId={this.props.travellingAccountId} setIncomingAccountId={this.props.setIncomingAccountId}  loadCheck={this.props.loadCheck} setToMatch={this.props.setToMatch} taskName={this.props.taskName} loadedTitles={this.titles} loadedAccountInformation={this.accountInfo} changeListItem={this.listItemsCycler} />
+			);
+		}
+		if(!this.props.loadedAccountInformation){
+			return (
+				<ChangeInputBoxDisplay  travellingAccounts={this.props.travellingAccounts} clickedId={this.props.clickedId}   travellingAccountId={this.props.travellingAccountId} setIncomingAccountId={this.props.setIncomingAccountId}  loadCheck={this.props.loadCheck} setToMatch={this.props.setToMatch} taskName={this.props.taskName}  loadedTitles={this.titles} accountInfo={this.accountInfo} emptyLoadedIndicator={this.props.emptyLoadedIndicator} changeListItem={this.listItemsCycler} />
+			);
+		}
+	}
+}
+
+ReactDOM.render(<CycleList />, document.getElementById("app"));
+  </script>
+  </body>
+</html>

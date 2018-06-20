@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.5.0/papaparse.js"></script>
+<script src='../../javascript/goBack.js'></script>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<body id="background">
+<button id="skipTraceApp" onclick="goBack(this.id)">Back To Home</button>
+DATE: <div id="currentDate"></div>
+TIME: <div id="time"></div>
+<br/>
+<button id="inBound" onclick="inboundOrOutBound(this)">INBOUND</button><button id="outBound" onclick="inboundOrOutBound(this)">OUTBOUND</button>
+<input id="aNumber" onkeyup="toPhoneTranBack(event);responseTranback(event)" onkeydown="chngAcc(event);"placeholder="ACCOUNT NUMBER"><div id="aNumberCounter"></div>
+<button id="search" onclick="">Search Account</button>
+<input id="phone" onkeydown="movetoresponse(event);forwardSlashMove(event);" oninput="phoneEvaluatorDialer()" onkeyup="autoTranBack();toresponse(event)" placeholder="PHONE">
+<input id="listItem" value="UID" placeholder="QUESTION">
+<input id="response" placeholder="RESPONSE" value="ENTER UID" onkeydown="aaa(event);">
+<input id="note" onkeyup="toAcc(event)">
+<ul id="list" onclick="selectText('list'); copy ();" contenteditable="true">
+</ul>
+<script src='javascript/index.js'></script>
+</body>
+</html>
+<html>
+<head>
+	<link href="css/table.css" rel="stylesheet">
+<div id="background">
+</head>
+<body>
+<table id="myTable">
+  <tr>
+	<td id="tT">Account number</td>
+	<td id="pT">Caller</td>
+	<td id="pT">Phone number</td>
+	<td id="daT">Date called</td>
+	<td id="reT">Intentions</td>
+	<td id="uidT">Comment</td>
+  </tr>
+</table>
+<div id="intentions">Intention Options
+<br/>
+	<input type="radio" onclick="forbOptions(this)" value="Reinstate" id="rein"> Reinstate
+	<br/>
+	<input type="radio" onclick="forbOptions(this)" value="Extend Forbearance" id="ext"> Extend Forbearance
+	<br/>
+	<input type="radio" onclick="forbOptions(this)" value="Modification" id="mod"> Modification
+	<br/>
+	<input type="radio" onclick="forbOptions(this)" value="Stay Delinquent" id="stayDel"> Stay Delinquent
+	<button onclick="getOut()">Exit</button>
+</div>
+	<textarea id="intro">Hello, this is (your name) with Fifth Third Bank.  We understand that you live in or near the impacted area from the recent hurricane.  We are sorry to hear that you may have been impacted and want you to know that as your bank we are here to help anyway that we can. \n  We would like to review your situation and determine the next steps on your account.</textarea>
+<br>
+<button id="disasterTableDownload">Download Spreadsheet</button>
+<p id="disasterTable"></p>
+<script src='javascript/table.js'></script>
+<input type="file" id="csv-file" name="files"/>
+
+</body>
+
+</html>
