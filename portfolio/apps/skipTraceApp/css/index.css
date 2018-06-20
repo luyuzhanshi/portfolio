@@ -1,0 +1,300 @@
+#background{
+
+}
+#first{
+	background-color: #444499
+	font-color: white
+}
+
+
+
+#list{
+	background-color :
+}
+li{
+	font-size: 25px
+}
+#inputs{
+	top: 5%;
+	  left: 50%;
+	  height: 2px;
+}
+#wrap {
+  margin-top: 300px;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+
+}
+.cube {
+  margin: auto;
+  position: relative;
+  height: 200px;
+  width: 200px;
+  transform-style: preserve-3d;
+}
+
+.cube > div {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  opacity: 0.9;
+  background-color: #000;
+  border: solid 1px #eeeeee;
+  color: #ffffff;
+}
+#f {
+  transform: translateZ(100px);
+  text-align: center;
+}
+
+#back {
+  transform: translateZ(-100px) rotateY(180deg);
+  text-align: center;
+}
+
+#right {
+  transform: rotateY(-270deg) translateX(100px);
+  transform-origin: top right;
+  text-align: center;
+}
+
+#left {
+  transform: rotateY(270deg) translateX(-100px);
+  transform-origin: center left;
+  text-align: center;
+}
+
+#top {
+  transform: rotateX(-270deg) translateY(-100px);
+  transform-origin: top center;
+  text-align: center;
+}
+
+#bottom {
+  transform: rotateX(270deg) translateY(100px);
+  transform-origin: bottom center;
+  text-align: center;
+}
+@keyframes rotate {
+  from {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+
+  to {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+@ changeColor {
+	0% {background: #FF0040;}
+	4.34%  {background: #DF0174;}
+	8.68% {background: #DF01A5;}
+	13.02% {background: #DF01D7;}
+	17.36% {background: #A901DB;}
+	21.70% {background: #7401DF;}
+	26.04% {background: #3A01DF;}
+	30.38% {background: #013ADF;}
+    34.72% {background: #0174DF;}/
+	39.06%  {background: #01A9DB;}
+	43.40%  {background: #01DFA5;}/
+	47.74%  {background: #01DFD7;}
+	52.08%  {background: #01DFA5;}
+	56.42%	 {background: #01DF74;}
+	60.76% {background: #01DF3A;}
+	65.10% {background: #01DF01;}
+	69.44% {background: #3ADF00;}
+	73.78% {background: #74DF00;}
+	78.12 {background: #A5DF00;}
+	82.46%  {background: #D7DF01;}
+	86.80%  {background: #DBA901;}
+	91.14%  {background: #DF7401;}
+	95.48%  {background: #DF3A01;}
+	100%	 {background: #DF0101;}
+}
+@ changeColor2 {
+	0%	 {background: #DF0101;}
+    4.34%  {background: #DF3A01;}
+    8.68%  {background: #DF7401;}
+    13.02%  {background: #DBA901;}
+	17.36%  {background: #D7DF01;}
+    21.70 {background: #A5DF00;}
+	26.04% {background: #74DF00;}
+	30.38% {background: #3ADF00;}
+	34.72% {background: #01DF01;}
+	39.06% {background: #01DF3A;}
+	43.40%	 {background: #01DF74;}
+    47.74%  {background: #01DFA5;}
+    52.08%  {background: #01DFD7;}
+    56.42%  {background: #01DFA5;}/
+	60.76%  {background: #01A9DB;}
+    65.10% {background: #0174DF;}/
+	69.44% {background: #013ADF;}/
+	73.78% {background: #3A01DF;}/
+	78.12% {background: #7401DF;}/
+	82.46% {background: #A901DB;}
+	86.80% {background: #DF01D7;}
+	91.14% {background: #DF01A5;}
+	95.48% {background: #DF0174;}
+	100% {background: #FF0040;}
+}
+
+.cube {
+  animation: rotate 15s infinite linear;
+}
+#f {
+  animation: changeColor 10s infinite linear;
+}
+#back {
+  animation: changeColor 10s infinite linear;
+}
+#right {
+  animation: changeColor 10s infinite linear;
+}
+#left {
+  animation: changeColor 10s infinite linear;
+}
+#top {
+  animation: changeColor 10s infinite linear;
+}
+#bottom {
+  animation: changeColor 10s infinite linear;
+}
+#background {
+  animation: changeColor2 10s infinite linear;
+}
+input {
+  animation: changeColor 7s	 infinite linear;
+}
+div {
+  animation: changeColor 7s infinite linear;
+}
+ul {
+  animation: changeColor 7s infinite linear;
+}
+li {
+  animation: changeColor 7s infinite linear;
+}
+button {
+  animation: changeColor 7s infinite linear;
+}
+
+#wrap:hover #f {
+  transform: translateZ(200px);
+}
+
+#wrap:hover #back {
+  transform: translateZ(-200px) rotateY(180deg);
+}
+
+#wrap:hover #right {
+  transform: rotateY(-270deg) translateZ(100px) translateX(100px);
+}
+
+#wrap:hover #left {
+  transform: rotateY(270deg) translateZ(100px) translateX(-100px);
+}
+
+#wrap:hover #top {
+  transform: rotateX(-270deg) translateZ(100px) translateY(-100px);
+}
+
+#wrap:hover #bottom {
+  transform: rotateX(270deg) translateZ(100px) translateY(100px);
+}
+.cube > div {
+  transition: transform 0.2s ease-in;
+}
+div.image {
+   content:url(http://placehold.it/350x150);
+}​
+img {
+    display: block;
+    margin: 0 auto;
+	border: 10px solid teal;
+}
+#aNumber {
+position: fixed;
+height: 30px;
+width: 200px;
+left: 25%;
+top: 5%;
+color: red;
+font-size: 15px;
+text-align: center;
+}
+#aNumberCounter {
+position: fixed;
+height: 30px;
+width: 200px;
+left: 45%;
+top: 1%;
+color: red;
+font-size: 25px;
+width: 20px;
+}
+#search {
+position: fixed;
+left: 41.7%;
+top: 5.5%;
+font-size: 15px;
+}
+#phone {
+position: fixed;
+left: 52%;
+top: 5%;
+font-size: 15px;
+height: 30px;
+width: 200px;
+text-align: center;
+color: red;
+}
+#note {
+position: fixed;
+left: 21%;
+top: 15%;
+width: 50%;
+height: 25px;
+font-size: 25px;
+text-align: center;
+color: red;
+}
+#listItem {
+position: fixed;
+left: 25%;
+top: 10%;
+width: 20%;
+height: 25px;
+font-size: 25px;
+color: red;
+background-color : #f9e5e5;
+text-align: center;
+}
+#inBound {
+background-color : yellow;
+opacity: 0.5;
+}
+#outBound {
+background-color : yellow;
+opacity: 0.5;
+}
+
+#response {
+position: fixed;
+left: 47%;
+top: 10%;
+width: 20%;
+height: 25px;
+font-size: 25px;
+color: red;
+background-color : #f9e5e5;
+text-align: center;
+}
+#image{
+	height: 100%;
+}
+#skipTraceApp {
+	 width: 100%;
+	 height: 40px;
+	 background-color: red;
+}

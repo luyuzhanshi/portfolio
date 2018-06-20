@@ -1,0 +1,314 @@
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+  <script src="https://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.32.1/react-bootstrap.min.js"></script>
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type = "text/css" href="css/index.css"/>
+  <script src='../../javascript/goBack.js'></script>
+  <script src='javascript/data.js'></script>
+</head>
+<body>
+<div id='home_page'></div>
+  <div id='home_page_banner_wrapper'>
+      <table id="banner_table">
+          <tr>
+            <td>
+              <div><a  id='about_link' href="/back_to_home_page">About</a></div>
+            </td>
+            <td>
+              <div id='rent_me_logo_box'><div><a  id='logo_words' href="/rent_page">SiteName</a></div></div>
+            </td>
+            <td>
+              <div><a id='login_create_link' href="/profile_management_page">Login/Create</a></div>
+            </td>
+          </tr>
+      </table>
+  <div id='home_page_banner_1'>
+    <button id="sitePrototype" onclick="goBack(this.id)">Back To Home</button>
+  </div>
+  <div id='home_page_banner_2'></div>
+</div>
+<div id='home_page_footer'>
+  <a  href="/back_to_home_page" id='terms_and_conditions'>Terms and Conditions</a>
+  <a  href="/back_to_home_page" id='contact_us'>Contact Us</a>
+  <a  href="/back_to_home_page" id='about_us'>About Us</a>
+</div>
+<script type='text/babel'>
+var searchByValue = (inputtedValue, stateName) => {
+  var inputtedValueLength = inputtedValue.length
+  var resultsArray = []
+  citiesStates.forEach(function(cityStateObject){
+    var cityName = cityStateObject.city
+    var state = cityStateObject.state
+    var lettersToCompareTo = cityName.slice(0, inputtedValueLength)
+    if (stateName.toUpperCase() == state.toUpperCase()){
+      if (inputtedValue.toUpperCase() == lettersToCompareTo.toUpperCase()){
+        resultsArray.push(cityName)
+      }
+    }
+  })
+  return resultsArray
+}
+
+var searchForCities = (stateName) => {
+  var foundCities = []
+  stateName = stateName.toUpperCase()
+  citiesStates.forEach(function(cityStateObject){
+    var stateToCompareTo = cityStateObject.state
+    var foundCity = cityStateObject.city
+    stateToCompareTo = stateToCompareTo.toUpperCase()
+    if (stateName == stateToCompareTo){
+      foundCities.push(foundCity)
+    }
+  })
+  return foundCities
+}
+
+  class HomePage extends React.Component{
+    constructor(props){
+      super(props)
+      this.state = {
+        formattedCities: [],
+        selectRegionBanner : {
+            backgroundColor: 'tan',
+            display: 'flex',
+            borderStyle: 'ridge',
+            borderWidth: 'thick',
+            borderColor: 'tan',
+            letterSpacing: '15px',
+            fontFamily: '"Times New Roman", Times, serif',
+            height: '5%',
+            width: '100%',
+            top: '114px',
+            position: 'fixed',
+            fontSize: '20px',
+            fontWeight: 'bolder',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'black',
+            textDecoration: 'none'
+        },
+        stateStyles : {
+            backgroundColor: 'white',
+            display: 'flex',
+            borderRadius: '50px',
+            letterSpacing: '5px',
+            fontFamily: '"Times New Roman", Times, serif',
+            height: '20px',
+            width: '100%',
+            bottom: '15px',
+            position: 'relative',
+            fontSize: '25px',
+            fontWeight: 'bolder',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'red',
+            textDecoration: 'none'
+        },
+        selectedStateStyles : {
+            backgroundColor: 'white',
+            display: 'flex',
+            borderStyle: 'ridge',
+            borderWidth: 'thin',
+            borderColor: 'tan',
+            letterSpacing: '5px',
+            fontFamily: '"Times New Roman", Times, serif',
+            height: '50px',
+            width: '150%',
+            bottom: '15px',
+            position: 'relative',
+            fontSize: '25px',
+            fontWeight: 'bolder',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'navy',
+            textDecoration: 'none'
+        },
+        searchingForCities: false
+      }
+      this.changeSearch = this.changeSearch.bind(this)
+      this.formatCities = this.formatCities.bind(this)
+      this.findCities = this.findCities.bind(this)
+      this.collapse = this.collapse.bind(this)
+    }
+    stateRowsTable = {
+      position: 'fixed',
+      width: '100%',
+      top: '180px'
+    }
+    cityStyle = {
+        position: 'relative',
+        top: '186px'
+    }
+    stateArray1 = [
+      {stateName: 'Alabama'},
+      {stateName: 'Alaska'},
+      {stateName: 'Arizona'},
+      {stateName: 'Arkansas'},
+      {stateName: 'California'},
+      {stateName: 'Colorado'},
+      {stateName: 'Connecticut'},
+      {stateName: 'Delaware'},
+      {stateName: 'Florida'},
+      {stateName: 'Georgia'},
+      {stateName: 'Hawaii'},
+      {stateName: 'Idaho'},
+      {stateName: 'Illinois'},
+      {stateName: 'Indiana'},
+      {stateName: 'Iowa'},
+      {stateName: 'Kansas'},
+      {stateName: 'Kentucky'},
+      {stateName: 'Louisiana'},
+      {stateName: 'Maine'},
+      {stateName: 'Maryland'},
+      {stateName: 'Massachusetts'},
+      {stateName: 'Michigan'},
+      {stateName: 'Minnesota'},
+      {stateName: 'Mississippi'},
+      {stateName: 'Missouri'}
+    ]
+    stateArray2 = [
+      {stateName: 'Montana'},
+      {stateName: 'Nebraska'},
+      {stateName: 'Nevada'},
+      {stateName: 'New Hampshire'},
+      {stateName: 'New Jersey'},
+      {stateName: 'New Mexico'},
+      {stateName: 'New York'},
+      {stateName: 'North Carolina'},
+      {stateName: 'North Dakota'},
+      {stateName: 'Ohio'},
+      {stateName: 'Oklahoma'},
+      {stateName: 'Oregon'},
+      {stateName: 'Pennsylvania'},
+      {stateName: 'Rhode Island'},
+      {stateName: 'South Carolina'},
+      {stateName: 'South Dakota'},
+      {stateName: 'Tennessee'},
+      {stateName: 'Texas'},
+      {stateName: 'Utah'},
+      {stateName: 'Vermont'},
+      {stateName: 'Washington'},
+      {stateName: 'Virginia'},
+      {stateName: 'West Virginia'},
+      {stateName: 'Wisconsin'},
+      {stateName: 'Wyoming'}
+    ]
+    finalState1Array = []
+    finalState2Array = []
+    searchingForCities = false
+    currentStateSelected = ''
+    tbodyStyle = {
+      display: 'table-row-group',
+      overflowY: 'auto',
+      position: 'relative'
+    }
+    callFunctions = () => {
+      this.placeStates(this.stateArray1, this.stateArray2)
+    }
+    expand = (event) => {
+      event.target.style.height = '50px'
+      event.target.style.backgroundColor = 'navy'
+      event.target.style.fontSize = '30px'
+      event.target.style.transition = 'all 0.2s ease-in'
+    }
+    findCities = (event) => {
+      var stateName = event.target.innerHTML
+      this.currentStateSelected = stateName
+      var foundCities = searchForCities(stateName)
+      this.state.formattedCities = this.formatCities(foundCities)
+      this.setState({
+        searchingForCities: true,
+        formattedCities: this.state.formattedCities
+      })
+    }
+    searchCityByValue = (event) => {
+      var inputtedValue = event.target.value
+      var foundCities = searchByValue(inputtedValue, this.currentStateSelected)
+      this.state.formattedCities = []
+      this.state.formattedCities = this.formatCities(foundCities)
+      this.setState({
+        formattedCities: this.state.formattedCities
+      })
+    }
+    formatCities = (foundCities, scope) => {
+      var formattedCitiesArray = []
+      var cityNameKeyNumber = 0
+      foundCities.forEach(function(cityName){
+        var formattedCity = <p onMouseLeave={this.collapse} key={cityName+cityNameKeyNumber} onMouseEnter={this.expand} style={this.state.stateStyles}>{cityName}</p>
+        cityNameKeyNumber++
+        formattedCitiesArray.push(
+          formattedCity
+        )
+      }, this)
+      return formattedCitiesArray
+    }
+    changeSearch(){
+      this.setState({
+        searchingForCities: false
+      })
+    }
+    collapse = (event) => {
+      event.target.style.height = '20px'
+      event.target.style.backgroundColor = 'white'
+      event.target.style.fontSize = '25px'
+      event.target.style.transition = 'all 0.2s ease-out'
+    }
+    placeStates = (stateArray1, stateArray2) => {
+      for (var stateArray1Counter = 0; stateArray1Counter < stateArray1.length; stateArray1Counter++){
+        this.finalState1Array.push(
+          <p onClick={this.findCities} onMouseLeave={this.collapse} onMouseEnter={this.expand} key={stateArray1[stateArray1Counter].stateName} style={this.state.stateStyles}>{stateArray1[stateArray1Counter].stateName}</p>
+        )
+      }
+      for (var stateArray2Counter = 0; stateArray2Counter < stateArray2.length; stateArray2Counter++){
+        this.finalState2Array.push(
+          <p onClick={this.findCities} onMouseLeave={this.collapse} onMouseEnter={this.expand} key={stateArray2[stateArray2Counter].stateName} style={this.state.stateStyles}>{stateArray2[stateArray2Counter].stateName}</p>
+        )
+      }
+    }
+    render(){
+      if (this.state.searchingForCities){
+        return (
+          <div>
+            <div style={this.cityStyle}>
+              {this.state.formattedCities}
+            </div>
+            <div style={this.state.selectRegionBanner} id='startDiv'>Select City<input onKeyUp={this.searchCityByValue} placeHolder='Type City Name'></input><button onClick={this.changeSearch}>back to state search</button></div>
+          </div>
+        )
+      }
+      if (!this.state.searchingForCities){
+        this.callFunctions()
+          return (
+            <div>
+              <table style={this.stateRowsTable}>
+                <tbody style={this.tbodyStyle}>
+                  <tr>
+                    <td>
+                      {this.finalState1Array}
+                    </td>
+                    <td>
+                      {this.finalState2Array}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style={this.state.selectRegionBanner} id='startDiv'>Select State</div>
+            </div>
+          )
+        } else return null
+      }
+    }
+  ReactDOM.render(<HomePage />, document.getElementById('home_page'))
+</script>
+</body>

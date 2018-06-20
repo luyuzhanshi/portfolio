@@ -1,0 +1,335 @@
+table{
+	width: 100%
+}
+table, td {
+    border: 1px solid black;
+	width: 100%
+
+}
+#myTable {
+	position: relative;
+    width: 100%
+	margin-left: auto;
+	margin-right: auto;
+}
+td {text-align: center;font-size: 150%;}
+
+#multiBtn{position: relative;
+    width: 12.5%;
+	margin-left: auto;
+	margin-right: auto;
+	left: 25%;
+	background-color: red;
+	}
+#clr{position: relative;
+    width: 12.5%;
+	margin-left: auto;
+	margin-right: auto;
+	left: 30%;
+	animation: changeColor2 7s infinite linear;
+	}
+#close{position: relative;
+    width: 12.5%;
+	margin-left: auto;
+	margin-right: auto;
+	left: 35%;
+	animation: changeColor 7s infinite linear;
+	}
+
+#pT {
+  animation: changeColor2 7s infinite linear;
+}
+#rT {
+  animation: changeColor2 7s infinite linear;
+}
+#uidT {
+  animation: changeColor2 7s infinite linear;
+}
+#reT {
+  animation: changeColor2 7s infinite linear;
+}
+#daT {
+  animation: changeColor2 7s infinite linear;
+}
+position: fixed;
+height: 100%;
+width: 100%;
+}
+
+#first{
+	background-color: #444499
+	font-color: white
+}
+
+#list{
+	background-color : #ccccff
+}
+li{
+	font-size: 25px
+}
+#inputs{
+	top: 5%;
+	  left: 50%;
+	  height: 2px;
+}
+#wrap {
+  margin-top: 300px;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+
+}
+.cube {
+  margin: auto;
+  position: relative;
+  height: 200px;
+  width: 200px;
+  transform-style: preserve-3d;
+}
+
+.cube > div {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  opacity: 0.9;
+  background-color: #000;
+  border: solid 1px #eeeeee;
+  color: #ffffff;
+}
+#f {
+  transform: translateZ(100px);
+  text-align: center;
+}
+
+#back {
+  transform: translateZ(-100px) rotateY(180deg);
+  text-align: center;
+}
+
+#right {
+  transform: rotateY(-270deg) translateX(100px);
+  transform-origin: top right;
+  text-align: center;
+}
+
+#left {
+  transform: rotateY(270deg) translateX(-100px);
+  transform-origin: center left;
+  text-align: center;
+}
+
+#top {
+  transform: rotateX(-270deg) translateY(-100px);
+  transform-origin: top center;
+  text-align: center;
+}
+
+#bottom {
+  transform: rotateX(270deg) translateY(100px);
+  transform-origin: bottom center;
+  text-align: center;
+}
+@keyframes rotate {
+  from {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+
+  to {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+@ changeColor {
+	0% {background: #FF0040;}
+	4.34%  {background: #DF0174;}
+	8.68% {background: #DF01A5;}
+	13.02% {background: #DF01D7;}
+	17.36% {background: #A901DB;}
+	21.70% {background: #7401DF;}
+	26.04% {background: #3A01DF;}
+	30.38% {background: #013ADF;}
+    34.72% {background: #0174DF;}/
+	39.06%  {background: #01A9DB;}
+	43.40%  {background: #01DFA5;}/
+	47.74%  {background: #01DFD7;}
+	52.08%  {background: #01DFA5;}
+	56.42%	 {background: #01DF74;}
+	60.76% {background: #01DF3A;}
+	65.10% {background: #01DF01;}
+	69.44% {background: #3ADF00;}
+	73.78% {background: #74DF00;}
+	78.12 {background: #A5DF00;}
+	82.46%  {background: #D7DF01;}
+	86.80%  {background: #DBA901;}
+	91.14%  {background: #DF7401;}
+	95.48%  {background: #DF3A01;}
+	100%	 {background: #DF0101;}
+}
+@ changeColor2 {
+	0%	 {background: #DF0101;}
+    4.34%  {background: #DF3A01;}
+    8.68%  {background: #DF7401;}
+    13.02%  {background: #DBA901;}
+	17.36%  {background: #D7DF01;}
+    21.70 {background: #A5DF00;}
+	26.04% {background: #74DF00;}
+	30.38% {background: #3ADF00;}
+	34.72% {background: #01DF01;}
+	39.06% {background: #01DF3A;}
+	43.40%	 {background: #01DF74;}
+    47.74%  {background: #01DFA5;}
+    52.08%  {background: #01DFD7;}
+    56.42%  {background: #01DFA5;}/
+	60.76%  {background: #01A9DB;}
+    65.10% {background: #0174DF;}/
+	69.44% {background: #013ADF;}/
+	73.78% {background: #3A01DF;}/
+	78.12% {background: #7401DF;}/
+	82.46% {background: #A901DB;}
+	86.80% {background: #DF01D7;}
+	91.14% {background: #DF01A5;}
+	95.48% {background: #DF0174;}
+	100% {background: #FF0040;}
+}
+
+.cube {
+  animation: rotate 15s infinite linear;
+}
+#f {
+  animation: changeColor 10s infinite linear;
+}
+#back {
+  animation: changeColor 10s infinite linear;
+}
+#right {
+  animation: changeColor 10s infinite linear;
+}
+#left {
+  animation: changeColor 10s infinite linear;
+}
+#top {
+  animation: changeColor 10s infinite linear;
+}
+#bottom {
+  animation: changeColor 10s infinite linear;
+}
+#background {
+  animation: changeColor2 10s infinite linear;
+}
+input {
+  animation: changeColor2 7s	 infinite linear;
+}
+div {
+  animation: changeColor2 7s infinite linear;
+}
+ul {
+  animation: changeColor2 7s infinite linear;
+}
+li {
+  animation: changeColor2 7s infinite linear;
+}
+button {
+  animation: changeColor2 7sr infinite linear;
+}
+body {
+  animation: changeColor 7sr infinite linear;
+}
+#wrap:hover #f {
+  transform: translateZ(200px);
+}
+
+#wrap:hover #back {
+  transform: translateZ(-200px) rotateY(180deg);
+}
+
+#wrap:hover #right {
+  transform: rotateY(-270deg) translateZ(100px) translateX(100px);
+}
+
+#wrap:hover #left {
+  transform: rotateY(270deg) translateZ(100px) translateX(-100px);
+}
+
+#wrap:hover #top {
+  transform: rotateX(-270deg) translateZ(100px) translateY(-100px);
+}
+
+#wrap:hover #bottom {
+  transform: rotateX(270deg) translateZ(100px) translateY(100px);
+}
+.cube > div {
+  transition: transform 0.2s ease-in;
+}
+div.image {
+   content:url(http://placehold.it/350x150);
+}​
+img {
+    display: block;
+    margin: 0 auto;
+	border: 10px solid teal;
+}
+#image{
+	height: 100%;
+}
+table {
+  animation: changeColor 7sr infinite linear;
+}
+#myTable {
+  animation: changeColor 7sr infinite linear;
+  width: 100%
+  }
+td {
+  animation: changeColor 7sr infinite linear;
+width: 14.28%
+  }
+#poc {
+  animation: changeColor 10s infinite linear;
+width: 14.28%
+  }
+#ksc {
+  animation: changeColor 10s infinite linear;
+width: 14.28%
+  }
+#nks {
+  animation: changeColor 10s infinite linear;
+width: 14.28%
+  }
+#cks {
+  animation: changeColor 10s infinite linear;
+width: 14.28%
+  }
+#tT {
+  animation: changeColor 10s infinite linear;
+width: 14.28%
+  }
+#anT {
+  animation: changeColor 10s infinite linear;
+  width: 14.28%
+}
+#newNum {
+  animation: changeColor 10s infinite linear;
+}
+#nnPT {
+  animation: changeColor 10s infinite linear;
+}
+#intentions{
+	position: fixed;
+	background-color: #f9e5e5;
+	width:0%;
+	right:0%;
+}
+#intro{
+  position: fixed;
+  color: #34000D;
+  font-weight:bold;
+  font-family: "chiller";
+  font-size:0%
+  right: 0%;
+  bottom: 0%;
+  height: 0%;
+  width: 0%
+}
+td{
+background-color: grey;
+opacity: 0.5
+}
